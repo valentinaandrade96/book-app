@@ -81,7 +81,7 @@ export class DetallesPage {
       email:this.usuarioStorage.email
     }
 
-    this.http.post("http://localhost:3000/usuario/agregarCarrito", body).subscribe((data: any) => {
+    this.http.post("https://bookserver-6e5c8a077822.herokuapp.com/usuario/agregarCarrito", body).subscribe((data: any) => {
       console.log(data)
       this.usuarioService.setUsuario(data.usuario);
       console.log()
