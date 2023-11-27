@@ -1,0 +1,43 @@
+<app-cabecera [titulo]="' '" [color]="'sucess'"></app-cabecera>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Cambio de contraseña
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Contraseña Actual</ion-label>
+        <ion-input
+          type="password"
+          [(ngModel)]="contrasenaActual"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Nueva Contraseña</ion-label>
+        <ion-input
+          type="password"
+          [(ngModel)]="nuevaContrasena"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Confirmar Nueva Contraseña</ion-label>
+        <ion-input
+          type="password"
+          [(ngModel)]="confirmarContrasena"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="full" (click)="cambiarContrasena()">Cambiar Contraseña</ion-button>
+  
+</ion-content>

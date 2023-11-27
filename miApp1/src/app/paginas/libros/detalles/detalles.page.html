@@ -1,0 +1,66 @@
+<app-cabecera [titulo]="' '" [color]="'sucess'"></app-cabecera><ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Botón para agregar a favoritos con el icono de un corazón -->
+      <ion-button (click)="agregarFavoritos()">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <!-- Botón para agregar al carrito con el icono de un carrito de compras -->
+      <ion-button (click)="agregarAlCarrito()">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Detalles del Libro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img [src]="libro.img" alt="{{ libro.titulo }}" />
+    <ion-card-header>
+      <ion-card-title>{{ libro.titulo }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>ISBN:</ion-label>
+          <ion-text>{{ libro.ISBN }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Precio de Compra:</ion-label>
+          <ion-text>{{ libro.precio_compra }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Precio de Venta:</ion-label>
+          <ion-text>{{ libro.precio_venta }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Categoría:</ion-label>
+          <ion-text>{{ libro.categoria }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Descripción:</ion-label>
+          <ion-text>{{ libro.descripcion }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Autor:</ion-label>
+          <ion-text>{{ libro.autor }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Proveedor:</ion-label>
+          <ion-text>{{ libro.proveedor }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Teléfono del Proveedor:</ion-label>
+          <ion-text>{{ libro.telefonoProveedor }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>Stock:</ion-label>
+          <ion-text>{{ libro.stock }}</ion-text>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

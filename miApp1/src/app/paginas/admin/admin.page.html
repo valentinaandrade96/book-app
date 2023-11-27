@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar color="blue">
+    <ion-buttons slot="end">
+      <ion-menu-button menu="principal"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pedidos Pendientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="!(nombreUsuario || email || direccion || ciudad || localidad || pais || cp)">
+    <ion-item>
+      <ion-label>No hay pedidos por enviar</ion-label>
+      
+    </ion-item>
+  </ion-card>
+  <ion-card *ngIf="nombreUsuario || email || direccion || ciudad || localidad || pais || cp">
+    <ion-card-header>
+      <ion-card-title>{{ nombreUsuario }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Email:</ion-label>
+        <ion-text>{{ email }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Dirección:</ion-label>
+        <ion-text>{{ direccion }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Ciudad:</ion-label>
+        <ion-text>{{ ciudad }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Localidad:</ion-label>
+        <ion-text>{{ localidad }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>País:</ion-label>
+        <ion-text>{{ pais }}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Código Postal:</ion-label>
+        <ion-text>{{ cp }}</ion-text>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list *ngIf="compras && compras.length > 0">
+    <ion-item-divider>
+      <ion-label>Compras</ion-label>
+    </ion-item-divider>
+    <ion-item *ngFor="let compra of compras">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label>Titulo:</ion-label>
+            <ion-text>{{ compra.titulo }}</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>Precio Total:</ion-label>
+            <ion-text>{{ compra.precioTotal }}</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>ISBN:</ion-label>
+            <ion-text>{{ compra.ISBN }}</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>Estado:</ion-label>
+            <ion-text>{{ compra.enviado ? 'Enviado' : 'No Enviado' }}</ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+  <ion-button *ngIf="compras && compras.length > 0"(click)="marcarComoEnviado(email)">Marcar como Enviado</ion-button>
+  <!--<ion-button expand="full" (click)="guardarCambios()">Guardar Cambios</ion-button>-->
+</ion-content>

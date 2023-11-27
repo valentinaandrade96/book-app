@@ -1,0 +1,12 @@
+<app-cabecera [titulo]="'Modal y Popover'" [color]="'orange'">
+  
+</app-cabecera>
+
+<ion-content class="ion-padding">
+  <ion-button (click)="muestraModal()" expand="block" shape="round">
+    Modal
+  </ion-button>
+  <ion-button (click)="muestraPopover($event)">
+    <ion-icon slot="icon.only" name="add"></ion-icon>
+  </ion-button>
+</ion-content>

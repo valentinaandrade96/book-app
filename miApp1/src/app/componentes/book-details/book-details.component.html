@@ -1,0 +1,21 @@
+
+
+<ion-content>
+  <ion-list>
+    <ion-img class="image"  src={{libroPulsado.volumeInfo.imageLinks.smallThumbnail}} ></ion-img>
+    <ion-item> Título:{{libroPulsado.volumeInfo.title}}</ion-item>
+     
+     
+    <ion-item> Author:{{libroPulsado.volumeInfo.authors}}</ion-item>
+    <ion-item> Descripción:{{libroPulsado.volumeInfo.description}}</ion-item>
+    
+  
+
+  <ion-button (click)="dismissModal(libroPulsado)" class="butt" fill="outline" color="medium"expand="block">Comprar</ion-button>
+</ion-list>
+</ion-content>
+
+
+
+
+

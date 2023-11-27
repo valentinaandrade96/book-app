@@ -1,0 +1,57 @@
+
+<app-cabecera [titulo]="' '" [color]="'sucess'"></app-cabecera>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Edita tu perfíl
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Apellidos</ion-label>
+      <ion-input [(ngModel)]="apellidos"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Fecha de Nacimiento</ion-label>
+      <ion-input [(ngModel)]="nacimiento" type="date"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Sexo</ion-label>
+      <ion-input [(ngModel)]="sexo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Dirección</ion-label>
+      <ion-input [(ngModel)]="direccion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Ciudad</ion-label>
+      <ion-input [(ngModel)]="ciudad"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Localidad</ion-label>
+      <ion-input [(ngModel)]="localidad"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">País</ion-label>
+      <ion-input [(ngModel)]="pais"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Código Postal</ion-label>
+      <ion-input [(ngModel)]="cp"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" (click)="guardarCambios()">Guardar Cambios</ion-button>
+</ion-content>
+
+
+

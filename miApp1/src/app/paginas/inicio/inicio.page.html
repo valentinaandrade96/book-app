@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="blue">
+    <ion-buttons slot="end">
+    <ion-menu-button menu="principal"></ion-menu-button>
+  </ion-buttons>
+    <ion-title class="shop">Bookish</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-list [lines]="'full'" [mode]="'ios'">
+   
+    <ion-item class="title">Bienvenido/a {{nombre}} </ion-item>
+    <ion-item class="text"> Te regalamos cualquiera de estos libros gratis, tan solo tienes que pinchar en ellos</ion-item>
+  </ion-list>
+    
+    <ion-list class="contenedor">
+      <ion-item  *ngFor="let item of librosGratis"> 
+        
+        
+        <ion-img class="image" src={{item.volumeInfo.imageLinks.smallThumbnail}} ></ion-img>
+        
+        
+     
+      
+        
+      </ion-item>
+      <ion-infinite-scroll #infiniteScroll threshold="100px" (ionInfinite)="loadData()">
+        <ion-infinite-scroll-content
+          loadingSpinner="circular"
+          loadingText="Cargando...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    
+    </ion-list>
+    
+    
+  
+</ion-content>

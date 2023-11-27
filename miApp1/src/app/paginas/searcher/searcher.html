@@ -1,0 +1,26 @@
+<app-cabecera [titulo]="''" [color]="''">
+
+</app-cabecera>
+
+<ion-content>
+
+
+  <div id="search-container4">
+    
+    <form id="search-form8">
+      <ion-searchbar class="search" (ionChange)="cambiaTexto($event)" placeholder="Titulo..." name=""></ion-searchbar>
+      
+
+      <ion-list>
+        <ion-item *ngFor="let book of librosEnVen|bookFilter:busqueda:campo">
+          <ion-button (click)="showBookDetails(book)"class="butt" fill="clear" color="medium"expand="block">{{ book.volumeInfo.title }} - {{ book.volumeInfo.authors}}</ion-button>
+          <ion-list>
+          
+          <ion-item> {{mensaje }}</ion-item>
+          </ion-list>
+        </ion-item>
+        </ion-list>
+       
+    </form>
+  </div>
+</ion-content>

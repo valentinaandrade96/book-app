@@ -1,0 +1,31 @@
+<app-cabecera [titulo]="''" [color]="''"></app-cabecera>
+
+<ion-content padding>
+  <form>
+    <ion-item>
+      <ion-label>Total:</ion-label>
+      <ion-text slot="end">{{ total }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Nombre en Tarjeta</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Número de Tarjeta</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Fecha de Vencimiento</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">CVC</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+  </form>
+
+  <ion-button class="butt" fill="outline" color="medium"expand="block" (click)="presentAlert()">Realizar Pago</ion-button>
+</ion-content>

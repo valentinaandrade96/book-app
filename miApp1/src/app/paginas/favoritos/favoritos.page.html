@@ -1,0 +1,26 @@
+<app-cabecera [titulo]="' '" [color]="'sucess'"></app-cabecera>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="favoritos.length > 0; else noFavoritos">
+    <ion-item *ngFor="let favorito of favoritos">
+      <ion-thumbnail slot="start">
+        <img [src]="favorito.img" alt="{{ favorito.titulo }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ favorito.titulo }}</h2>
+        <p>{{ favorito.ISBN }}</p>
+      </ion-label>
+    <ion-item>
+      <ion-button expand="block" (click)="agregarAlCarrito(favorito)">Añadir al carrito</ion-button>
+      </ion-item>
+    </ion-item>
+  </ion-list>
+  <ng-template #noFavoritos>
+    <ion-text color="medium">No tienes elementos en favoritos</ion-text>
+  </ng-template>
+</ion-content>

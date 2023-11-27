@@ -1,0 +1,23 @@
+
+
+<ion-content>
+  <ion-list>
+    <ion-item class="title">NUESTROS LIBROS </ion-item>
+    <ion-list class="contenedor">
+    <ion-item  *ngFor="let item of carritoCompra"> 
+      
+      
+      <ion-img class="image"  src={{item.volumeInfo.imageLinks.smallThumbnail}} ></ion-img>
+      <ion-item> {{item.volumeInfo.title}}</ion-item>
+        
+    </ion-item>
+    </ion-list>
+    <ion-item>Total: {{carritoCesta}} $ </ion-item>
+    <ion-button class="butt" fill="outline" color="medium"expand="block"(click)="dismissModal()">
+      Go to Payment
+    </ion-button>
+   
+  </ion-list>
+
+  
+</ion-content>

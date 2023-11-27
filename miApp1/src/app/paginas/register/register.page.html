@@ -1,0 +1,57 @@
+<app-cabecera [titulo]="' '" [color]="'sucess'"></app-cabecera>
+
+<ion-content>
+
+<form [formGroup]="form">
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input formControlName="nombre" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Apellidos</ion-label>
+    <ion-input formControlName="apellidos" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input formControlName="email" type="email"></ion-input>
+  </ion-item>
+  <ion-item >
+    <ion-label position="floating">Fecha de nacimiento</ion-label>
+    <ion-input formControlName="nacimiento" type="text"></ion-input>
+  </ion-item>
+  <ion-item >
+    <ion-label position="floating">Sexo</ion-label>
+    <ion-input formControlName="sexo" type="text"></ion-input>
+  </ion-item>
+  <ion-item >
+    <ion-label position="floating">Direccion</ion-label>
+    <ion-input formControlName="direccion" type="text"></ion-input>
+  </ion-item>
+  <ion-item >
+    <ion-label position="floating">ciudad</ion-label>
+    <ion-input formControlName="ciudad" type="text"></ion-input>
+  </ion-item>
+  <ion-item >
+    <ion-label position="floating">Localidad</ion-label>
+    <ion-input formControlName="localidad" type="text"></ion-input>
+  </ion-item>
+  <ion-item >
+    <ion-label position="floating">cp</ion-label>
+    <ion-input formControlName="cp" type="text"></ion-input>
+  </ion-item>
+  <ion-item >
+    <ion-label position="floating">Pais</ion-label>
+    <ion-input formControlName="pais" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input formControlName="password" [type]="passwordType">
+    </ion-input>
+  </ion-item>
+
+  <ion-button class="submit ion-margin-top" size="full"  (click)="onRegister()">Registrarse</ion-button>
+  
+
+
+</form>
+</ion-content>

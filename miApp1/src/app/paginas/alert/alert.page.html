@@ -1,0 +1,25 @@
+<app-cabecera [titulo]="'Alert'" [color]="'secondary'"></app-cabecera>
+
+<ion-content>
+
+<!-- <ion-button (click)="mostrarAlert()" expand="block">
+    Mostrar Alerta 
+</ion-button>
+
+<ion-button (click)="mostrarAlertaDatos()" expand="block" color="warning">
+    Mostrar Datos
+</ion-button> -->
+
+<ion-button (click)="formularioJuegos()">Juegos</ion-button>
+
+<ion-card *ngFor="let juego of arrayJuegos">
+    <ion-card-header>
+      <ion-card-title>{{juego.nombre}}</ion-card-title>
+      <ion-card-subtitle>Categoria: {{juego.categoria}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>Puntuacion: {{juego.puntuacion}}</ion-card-content>
+    <ion-card-content>Fecha de Lanzamiento: {{juego.fechaEstreno}}</ion-card-content>
+    
+</ion-card>
+
+</ion-content>

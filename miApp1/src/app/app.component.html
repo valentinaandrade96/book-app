@@ -1,0 +1,30 @@
+<ion-app>
+  
+  <ion-menu contentId="main"
+  menuId="principal"
+  side="start"
+  type="overlay">
+
+<ion-header>
+  <ion-toolbar>
+    
+     
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list [lines]="'full'" [mode]="'ios'">
+    
+    <ion-item class="title">{{nombre}}</ion-item>
+    <ion-menu-toggle *ngFor="let c of componentes">
+       <ion-item [color]="c.color" [routerLink]="c.ruta">
+        <ion-icon slot="start" [name]="c.icono"></ion-icon>
+          {{c.nombre}}  
+        </ion-item>
+    </ion-menu-toggle>
+  </ion-list>
+</ion-content>
+
+</ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>
