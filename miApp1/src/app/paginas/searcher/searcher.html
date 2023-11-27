@@ -12,7 +12,7 @@
       
 
       <ion-list>
-        <ion-item *ngFor="let book of librosEnVen|bookFilter:busqueda:campo">
+        <ion-item *ngFor="let book of librosEnVen|bookFilter:busqueda">
           <ion-button (click)="showBookDetails(book)"class="butt" fill="clear" color="medium"expand="block">{{ book.volumeInfo.title }} - {{ book.volumeInfo.authors}}</ion-button>
           <ion-list>
           

@@ -5,7 +5,6 @@ import { Personajes } from '../../interfaces/personajes';
 import { booksService } from '../../servicios/books-service';
 import { NavController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-import { ShoppingCartComponentComponent } from 'src/app/componentes/shopping-cart-component/shopping-cart-component.component';
 import { BookDetailsComponent } from 'src/app/componentes/book-details/book-details.component';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
@@ -110,6 +109,7 @@ export class InfiniteScrollPage implements OnInit {
   }
   
   async showShoppingCart(carrito) {
+    /*
     const modal = await this.modalController.create({
       component: ShoppingCartComponentComponent,
       componentProps: {
@@ -122,6 +122,7 @@ export class InfiniteScrollPage implements OnInit {
       this.router.navigate(['/cart']);
     });
     return await modal.present();
+    */
   }
 
   async showBookDetails(item){

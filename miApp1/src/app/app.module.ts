@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { pipesModule } from './pipes/pipes.module';
-import { ShoppingCartComponentComponent } from './componentes/shopping-cart-component/shopping-cart-component.component';
+
 import { BookDetailsComponent } from './componentes/book-details/book-details.component';
 import { RouterModule } from '@angular/router';
 import { IonicStorageModule } from '@ionic/storage-angular';
