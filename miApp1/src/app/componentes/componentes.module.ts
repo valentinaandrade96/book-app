@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { CabeceraComponent} from './cabecera/cabecera.component';
 import {IonicModule} from '@ionic/angular';
 import { PopOverComponent } from './pop-over/pop-over.component';
-import { ShoppingCartComponentComponent } from './shopping-cart-component/shopping-cart-component.component';
+
 import { BookDetailsComponent } from './book-details/book-details.component';
 
 @NgModule({
-  declarations: [CabeceraComponent, PopOverComponent, ShoppingCartComponentComponent, BookDetailsComponent],
+  declarations: [CabeceraComponent, PopOverComponent, BookDetailsComponent],
   imports: [
     CommonModule,
     IonicModule,
@@ -16,7 +16,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
   exports:[
     CabeceraComponent,
     PopOverComponent,
-    ShoppingCartComponentComponent
+   
   ]
 })
 export class ComponentesModule { }

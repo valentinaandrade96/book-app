@@ -3,7 +3,7 @@ import { Componente } from './interfaces/componente';
 import { ComponentesService } from './servicios/componentes.service';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { ShoppingCartComponentComponent } from './componentes/shopping-cart-component/shopping-cart-component.component';
+
 
 
 @Component({
@@ -21,13 +21,7 @@ export class AppComponent implements OnInit {
       color: 'black',
       icono:'infinite-outline'
     },
-    {
-      nombre: 'Cesta',
-      ruta: '/cart',
-      color: 'black',
-      icono:'airplane'
-
-    },
+    
     {
       nombre: 'Buscar',
       ruta: '/search',
