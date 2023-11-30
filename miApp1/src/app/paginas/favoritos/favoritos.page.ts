@@ -23,8 +23,11 @@ export class FavoritosPage implements OnInit {
   async cargarUser(){
     await this.storage.create();
     this.usuarioStorage = await this.storage.get('usuario');
-    
+    if(this.usuarioStorage){
     this.favoritos=this.usuarioStorage.favoritos;
+  }else{
+    this.favoritos = [];
+  }
   }
   async agregarAlCarrito(favorito:any){
     const body={
@@ -45,6 +48,7 @@ export class FavoritosPage implements OnInit {
       this.usuarioService.setUsuario(data.usuario);
       console.log(data+ "data")
       console.log(data.token+ "data.token")
+      console.log("dataToken"+data.token)
       this.usuarioService.guardarToken(data.token);
     });
     this.usuarioStorage = await this.storage.get('usuario');

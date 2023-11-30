@@ -34,7 +34,7 @@ export class UsuarioService{
         }
 
         async guardarToken(token: string) {
-           
+           console.log("guardar token "+ token)
             this.token = token;
           
             await this.storage.set('token', token);
