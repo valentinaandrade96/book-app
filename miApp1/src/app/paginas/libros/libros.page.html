@@ -1,26 +1,30 @@
 <ion-header>
   <ion-toolbar color="blue">
     <ion-buttons slot="end">
-    <ion-menu-button menu="principal"></ion-menu-button>
-  </ion-buttons>
-  
-  <ion-title class="shop">Bookish</ion-title>
+      <ion-menu-button menu="principal"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="shop">Bookish</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let libro of libros" (click)="verDetalles(libro)">
-      <ion-thumbnail slot="start">
-        <img [src]="libro.img" alt="{{ libro.titulo }}">
-      </ion-thumbnail>
-      <ion-label>
-        <h2>{{ libro.titulo }}</h2>
-        <p>{{ libro.autor }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <div id="search-container4">
+    <form id="search-form8">
+      <ion-searchbar class="search" (ionChange)="cambiaTexto($event)" placeholder="Título..." name=""></ion-searchbar>
+      <ion-list>
+        <div *ngFor="let libro of libros | bookFilter:busqueda" class="custom-card">
+          <img [src]="libro.img" alt="{{ libro.titulo }}" class="book-img">
+          <div class="book-info">
+            <h2>{{ libro.titulo }}</h2>
+            <p>{{ libro.autor }}</p>
+            <ion-button (click)="verDetalles(libro)" fill="solid" class="details-button">Ver Detalles</ion-button>
+          </div>
+        </div>
+      </ion-list>
+      <!-- <ion-item *ngIf="mensaje">{{ mensaje }}</ion-item>-->
+    </form>
+  </div>
+ 
 
   <ion-infinite-scroll (ionInfinite)="loadMoreBooks($event)">
     <ion-infinite-scroll-content

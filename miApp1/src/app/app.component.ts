@@ -22,13 +22,7 @@ export class AppComponent implements OnInit {
       icono:'infinite-outline'
     },
     
-    {
-      nombre: 'Buscar',
-      ruta: '/search',
-      color: 'black',
-      icono:'search-outline'
-
-    },
+    
     {
       nombre: 'Log out',
       ruta: '/button',

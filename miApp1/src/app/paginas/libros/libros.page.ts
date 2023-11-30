@@ -10,11 +10,15 @@ import { NavController } from '@ionic/angular';
 export class LibrosPage implements OnInit {
   libros: any[] = [];
   pageNumber: number = 1;
+  public busqueda:string='';
 
   constructor(private http: HttpClient,private navCtrl: NavController) {}
 
   ngOnInit() {
     this.loadBooks();
+  }
+  cambiaTexto(event:any){
+    this.busqueda = event.target.value;
   }
 
   loadBooks() {

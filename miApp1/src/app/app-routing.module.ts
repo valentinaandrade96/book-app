@@ -27,10 +27,6 @@ const rutas: Routes = [
     loadChildren: () => import('./paginas/button/button.module').then( m => m.ButtonPageModule)
   },
 
-  {
-    path: 'search',
-    loadChildren: () => import('./paginas/searcher/searcher.module').then( m => m.SearcherPageModule)
-  },
 
   {
     

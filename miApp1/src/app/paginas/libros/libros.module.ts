@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { LibrosPageRoutingModule } from './libros-routing.module';
 import { ComponentesModule } from "../../componentes/componentes.module";
 import { LibrosPage } from './libros.page';
+import { pipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { LibrosPage } from './libros.page';
     IonicModule,
     LibrosPageRoutingModule,
     ComponentesModule,
+    pipesModule
   ],
   declarations: [LibrosPage]
 })

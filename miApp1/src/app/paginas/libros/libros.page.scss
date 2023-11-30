@@ -1,57 +1,44 @@
-
-.botonComprar{
-    text-align: center;
-    display:flex;
-  justify-content:center;
-  align-items:center;
-
-}
-ion-list{
-  background-color: black;
+#search-container4 {
+  padding: 15px;
 }
 
-body{
-  background-color: black;
+.search {
+  margin-bottom: 20px;
 }
 
-.contenedor {
+.custom-card {
   display: flex;
-  flex-wrap: wrap;
-  width: 33,3%;
-  margin:0px;
-  margin-top:10px;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
-  background-color: black;
-  
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 
-
-.title{
-  margin:40px;
-      font-size: 40px;
-      text-align: center;
-      padding-bottom: 20px;
-      
-  }
-  .shop{
-    font-size: 40px;
-    text-align: center;
-    
+.book-img {
+  width: 100px; /* Adjust the size as needed */
+  height: 150px; /* Adjust the size as needed */
+  object-fit: cover;
 }
-  
-  .image{
-      height: 100px;
-      width: 100%;
-      display: flex;
-      padding:0px;
-   margin: 10px auto;
-   background: black;
-   margin-top:30px;
-  }
-  
-  ion-toolbar{
-    height: 100px;
-    text-align: center;
 
-  }
+.book-info {
+  padding: 10px;
+  flex: 1;
+}
+
+.book-info h2 {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+.book-info p {
+  font-size: 1em;
+  color: #666;
+}
+
+.details-button {
+  --background: var(--ion-color-primary);
+  --color: #fff;
+}
