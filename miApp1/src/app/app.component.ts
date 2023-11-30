@@ -43,12 +43,7 @@ export class AppComponent implements OnInit {
       icono:'mdi:qrcode-scan'
     },
     
-    {
-      nombre: 'libros',
-      ruta: '/libros',
-      color: 'sucess',
-      icono:'mdi:qrcode-scan'
-    },
+    
     {
       nombre: 'Favoritos',
       ruta: '/favoritos',

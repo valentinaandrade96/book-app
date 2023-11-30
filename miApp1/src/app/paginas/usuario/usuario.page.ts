@@ -25,4 +25,7 @@ export class UsuarioPage implements OnInit {
   irACompras() {
     this.navCtrl.navigateForward('/usuario/compras');
   }
+  favortios() {
+    this.navCtrl.navigateForward('/favoritos');
+  }
 }

@@ -31,10 +31,7 @@ const rutas: Routes = [
     path: 'search',
     loadChildren: () => import('./paginas/searcher/searcher.module').then( m => m.SearcherPageModule)
   },
-  {
-    path: 'infinite-scroll',
-    loadChildren: () => import('./paginas/books-scroll/infinite-scroll.module').then( m => m.InfiniteScrollPageModule)
-  },
+
   {
     
     path: 'usuario',

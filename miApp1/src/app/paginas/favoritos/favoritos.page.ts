@@ -11,7 +11,7 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 })
 export class FavoritosPage implements OnInit {
   usuarioStorage: Usuario;
-  favoritos: Compra[]
+  favoritos: Compra[]=[]
   constructor(private storage: Storage,private http: HttpClient,private usuarioService: UsuarioService,) { }
 
   ngOnInit() {

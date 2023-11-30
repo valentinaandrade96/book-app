@@ -61,7 +61,7 @@ export class RegisterPage implements OnInit {
     this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
   }
   submitInfo(usuario){
-    this.navCtrl.navigateForward(['/infinite-scroll'], {
+    this.navCtrl.navigateForward(['/libros'], {
       queryParams: {
         name: usuario.name
       }
@@ -89,7 +89,7 @@ export class RegisterPage implements OnInit {
       next: res => {
         console.log(res);
         localStorage.setItem('token', res.token); 
-        this.router.navigate(['/infinite-scroll'], {replaceUrl:true}); 
+        this.router.navigate(['/libros'], {replaceUrl:true}); 
       },
       error: err => {console.error(err);
       }

@@ -1,0 +1,68 @@
+<!-- crear-articulo.page.html -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear Nuevo Artículo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">ISBN</ion-label>
+      <ion-input type="text" [(ngModel)]="form.ISBN"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input type="text" [(ngModel)]="form.titulo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio de Compra</ion-label>
+      <ion-input type="number" [(ngModel)]="form.precio_compra"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio de Venta</ion-label>
+      <ion-input type="number" [(ngModel)]="form.precio_venta"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Categoría</ion-label>
+      <ion-input type="text" [(ngModel)]="form.categoria"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="form.descripcion"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Autor</ion-label>
+      <ion-input type="text" [(ngModel)]="form.autor"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Proveedor</ion-label>
+      <ion-input type="text" [(ngModel)]="form.proveedor"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Teléfono del Proveedor</ion-label>
+      <ion-input type="text" [(ngModel)]="form.telefonoProveedor"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">URL de la Imagen</ion-label>
+      <ion-input type="text" [(ngModel)]="form.img"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Stock</ion-label>
+      <ion-input type="number" [(ngModel)]="form.stock"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="crearArticulo(form)">Crear Artículo</ion-button>
+</ion-content>

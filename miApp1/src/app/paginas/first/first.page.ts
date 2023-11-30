@@ -14,7 +14,7 @@ export class FirstPage implements OnInit {
 
     const token = sessionStorage.getItem('token');
     if(token){
-      this.navCtrl.navigateForward(['/infinite-scroll'])
+      this.navCtrl.navigateForward(['/libros'])
     }
 
   }

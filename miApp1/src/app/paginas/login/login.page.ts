@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
   }
 
   submitInfo(usuario){
-    this.navCtrl.navigateForward(['/infinite-scroll'], {
+    this.navCtrl.navigateForward(['/libros'], {
       queryParams: {
         name: usuario.name
       }
