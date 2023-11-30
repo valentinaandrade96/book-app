@@ -42,7 +42,7 @@ export class FavoritosPage implements OnInit {
       
       //console.log()
       this.usuarioService.guardarToken(data.token);
-    
+      
     this.http.post("https://bookserver-6e5c8a077822.herokuapp.com/usuario/eliminarDeFavoritos", body).subscribe((data: any) => {
       console.log("lerelere"+ data.usuario)
       this.usuarioService.setUsuario(data.usuario);
@@ -50,9 +50,11 @@ export class FavoritosPage implements OnInit {
       console.log(data.token+ "data.token")
       console.log("dataToken"+data.token)
       this.usuarioService.guardarToken(data.token);
+      this.cargarUser();
+      
     });
     this.usuarioStorage = await this.storage.get('usuario');
     console.log(this.usuarioStorage.favoritos[0])}});
-    this.cargarUser();
+    
   }
 }
