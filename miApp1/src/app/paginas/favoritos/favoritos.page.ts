@@ -42,8 +42,13 @@ export class FavoritosPage implements OnInit {
       
       //console.log()
       this.usuarioService.guardarToken(data.token);
+      this.usuarioStorage = await this.storage.get('usuario');
+      const newfav={
+        titulo: favorito.titulo,
+        email:this.usuarioStorage.email
+      }
       
-    this.http.post("https://bookserver-6e5c8a077822.herokuapp.com/usuario/eliminarDeFavoritos", body).subscribe((data: any) => {
+    this.http.post("https://bookserver-6e5c8a077822.herokuapp.com/usuario/eliminarDeFavoritos", newfav).subscribe((data: any) => {
       console.log("lerelere"+ data.usuario)
       this.usuarioService.setUsuario(data.usuario);
       console.log(data+ "data")
