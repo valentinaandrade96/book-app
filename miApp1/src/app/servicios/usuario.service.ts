@@ -34,11 +34,11 @@ export class UsuarioService{
         }
 
         async guardarToken(token: string) {
-           console.log("guardar token "+ token)
+           console.log("guardar token 1"+ this.token)
             this.token = token;
           
             await this.storage.set('token', token);
-         
+         console.log("guardar token 2"+ await this.storage.set('token', token));
             
             await this.validaToken();
             
@@ -157,7 +157,7 @@ export class UsuarioService{
         }
 
         async cargarToken(){
-            this.tokenAlmacenado= await this.storage.get('token') || null;
+           // this.tokenAlmacenado= await this.storage.get('token') || null;
         }
 
         setSession(authResult: RespuestaGetToken){
@@ -192,20 +192,23 @@ export class UsuarioService{
         async validaToken(): Promise<boolean> {
 
             await this.cargarToken();
-        
-            if(this.token === '') {
+            const tokenNow= await this.storage.get('token')
+            if(tokenNow=== '') {
               this.navCrtl.navigateRoot('/login');
               return Promise.resolve(false);
             }
         
             return new Promise<boolean>(resolve => {
               const headers = new HttpHeaders({
-                'x-token': this.token
+                'x-token': tokenNow
               });
+              //console.log( { headers })
               
              
               this._http.get<RespuestaUsuario>(this.url +'get', { headers })
                       .subscribe(resp => {
+                        console.log(resp)
+                        console.log(resp['ok'])
                         if(resp['ok']) {
 
                           resolve(true);
