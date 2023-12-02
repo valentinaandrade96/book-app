@@ -15,7 +15,7 @@ export class CarritoPage implements OnInit {
   constructor(private storage: Storage,private http: HttpClient,private usuarioService: UsuarioService,private router: Router) { }
   usuarioStorage: Usuario;
   carrito: Compra[]=[];
-  precioTotalPedido:number;
+  precioTotalPedido:number=0;
   gastosEnvio:number;
   descuento:string;
   resultadoPrecio:number;
@@ -31,10 +31,25 @@ export class CarritoPage implements OnInit {
   }else{
     this.carrito = [];
   }
-  this.carrito.forEach((item)=>{this.precioTotalPedido=+item.precioTotal});
+  
+  this.carrito.forEach((item)=>{
+    console.log("precioTotalPedido"+this.precioTotalPedido)
+    console.log("item.precioTotal"+item.precioTotal)
+    this.precioTotalPedido=this.precioTotalPedido+item.precioTotal});
   this.descuento="10%"
   this.resultadoPrecio=this.precioTotalPedido-(this.precioTotalPedido*0.1)
   }
+
+  async cargarUserAfter(){
+  
+    this.usuarioStorage = await this.storage.get('usuario');
+    if(this.usuarioStorage){
+    this.carrito=this.usuarioStorage.carrito;
+  }else{
+    this.carrito = [];
+  }}
+
+
   async comprar(){
     const body={
       
@@ -45,7 +60,7 @@ export class CarritoPage implements OnInit {
       if(data){
       //console.log(data)
       this.usuarioService.setUsuario(data.usuario);
-      
+      console.log("edata.mensaj "+data.mensaje)
       //console.log()
       this.usuarioService.guardarToken(data.token);
       
@@ -72,7 +87,7 @@ export class CarritoPage implements OnInit {
       //console.log()
       this.usuarioService.guardarToken(data.token);
       this.usuarioStorage = await this.storage.get('usuario');
-      
+      this.cargarUserAfter()
       
     
     this.usuarioStorage = await this.storage.get('usuario');
