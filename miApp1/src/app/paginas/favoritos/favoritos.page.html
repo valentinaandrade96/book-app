@@ -15,8 +15,13 @@
         <h2>{{ favorito.titulo }}</h2>
         <p>{{ favorito.ISBN }}</p>
       </ion-label>
+      <ion-item>
+      <ion-button fill="clear" slot="end" (click)="eliminarDeFav(favorito)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
     <ion-item>
-      <ion-button expand="block" (click)="agregarAlCarrito(favorito)">Añadir al carrito</ion-button>
+      <ion-icon name="cart-outline" (click)="verificaSiCarrito(favorito)"></ion-icon>
       </ion-item>
     </ion-item>
   </ion-list>

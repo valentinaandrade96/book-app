@@ -23,15 +23,15 @@ export class DetallesPage {
     private navCtrl: NavController,
     private usuarioService: UsuarioService,
     private http: HttpClient,
-    private storage: Storage // Reemplaza con tu servicio de usuario
+    private storage: Storage
   ) {
     
-    // Obtén el parámetro de la URL (el ID del libro)
+    
     this.route.params.subscribe((params) => {
       console.log(params)
       if (params['id']) {
         console.log(params['id'])
-        // Llama a tu servicio para obtener los detalles del libro
+       
         this.obtenerDetallesLibro(params['id']);
         
       }
@@ -43,11 +43,11 @@ export class DetallesPage {
   async obtenerDetallesLibro(titulo: string) {
     this.usuarioStorage = await this.storage.get('usuario');
     console.log(titulo)
-    // Llama a tu servicio para obtener los detalles del libro
+ 
     this.usuarioService.obtenerDetallesLibro(titulo).subscribe(
       (response) => {
         if (response.ok) {
-          // Procesa los datos del libro encontrado (response.libro)
+          
           console.log('Libro encontrado:', response.libro);
           this.libro=response.libro
         } else {
@@ -87,6 +87,27 @@ export class DetallesPage {
       console.log()
       this.usuarioService.guardarToken(data.token);
     });
+  }
+  async verificaSiCarrito(){
+    const yaEstaEnCarrito = this.usuarioStorage.carrito.some(item => item.titulo === this.libro.titulo);
+    if (yaEstaEnCarrito) {
+      if (confirm("Ya tienes este artículo en el carrito. ¿Quieres volver a meterlo?")) {
+        this.agregarAlCarrito() 
+      }
+    } else {
+      this.agregarAlCarrito() 
+    }
+  
+  }
+
+  async verificaSiFavoritos(){
+    const yaEstaEnFavoritos = this.usuarioStorage.favoritos.some(item => item.titulo === this.libro.titulo);
+    if (yaEstaEnFavoritos) {
+      alert("Este artículo ya está en tus favoritos.");
+      return; 
+    }else{
+      this.agregarFavoritos();
+    }
   }
 }
 

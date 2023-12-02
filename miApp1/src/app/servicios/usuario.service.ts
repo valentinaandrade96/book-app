@@ -34,11 +34,11 @@ export class UsuarioService{
         }
 
         async guardarToken(token: string) {
-           console.log("guardar token 1"+ this.token)
+          // console.log("guardar token 1"+ this.token)
             this.token = token;
           
             await this.storage.set('token', token);
-         console.log("guardar token 2"+ await this.storage.set('token', token));
+         //console.log("guardar token 2"+ await this.storage.set('token', token));
             
             await this.validaToken();
             
@@ -60,11 +60,11 @@ export class UsuarioService{
           }
 
           async setUsuario(usuar: Usuario){
-            console.log("Usuario: en setUsuario 1: "+ await this.storage.get('usuario') )
+            //console.log("Usuario: en setUsuario 1: "+ await this.storage.get('usuario') )
             this.usuario=usuar;
             
             await this.storage.set('usuario',this.usuario)
-            console.log("Usuario: en setUsuario 2: "+ await this.storage.get('usuario') )
+           // console.log("Usuario: en setUsuario 2: "+ await this.storage.get('usuario') )
         
           }
 
@@ -135,10 +135,7 @@ export class UsuarioService{
             email: email,
             
           };
-          console.log("Usuario_service")
-          console.log(this.url+ 'setEnviado')
-          console.log(this.url)
-          console.log(email)
+          
           const response = this._http.post<ResultadoEnviado>(this.url+ 'setEnviado', body);
           return Promise.resolve(response);
          
@@ -161,7 +158,7 @@ export class UsuarioService{
         }
 
         setSession(authResult: RespuestaGetToken){
-            console.log("Entroaqui")
+          
             localStorage.setItem('Token', authResult.token);
             //this.usuario = jwtDecode(authResult.token);
         }
@@ -207,8 +204,7 @@ export class UsuarioService{
              
               this._http.get<RespuestaUsuario>(this.url +'get', { headers })
                       .subscribe(resp => {
-                        console.log(resp)
-                        console.log(resp['ok'])
+                        
                         if(resp['ok']) {
 
                           resolve(true);

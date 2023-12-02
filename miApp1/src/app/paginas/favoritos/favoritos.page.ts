@@ -45,6 +45,7 @@ export class FavoritosPage implements OnInit {
       titulo: favorito.titulo,
       email:this.usuarioStorage.email
     }
+    
 
     this.http.post("https://bookserver-6e5c8a077822.herokuapp.com/usuario/agregarCarrito", body).subscribe(async (data: any) => {
       console.log("data"+data)
@@ -60,19 +61,60 @@ export class FavoritosPage implements OnInit {
         email:this.usuarioStorage.email
       }
       
-    this.http.post("https://bookserver-6e5c8a077822.herokuapp.com/usuario/eliminarDeFavoritos", newfav).subscribe((data: any) => {
+    this.http.post("https://bookserver-6e5c8a077822.herokuapp.com/usuario/eliminarDeFavoritos", newfav).subscribe(async (data: any) => {
       console.log("lerelere"+ data.usuario)
       this.usuarioService.setUsuario(data.usuario);
       console.log(data+ "data")
       console.log(data.token+ "data.token")
       console.log("dataToken"+data.token)
       this.usuarioService.guardarToken(data.token);
-      
-      this.cargarUserAfter()
+      this.usuarioStorage=data.usuario;
+      await this.storage.set('usuario', this.usuarioStorage);
+      // Actualiza la lista de favoritos en el estado local
+      this.favoritos = this.usuarioStorage.favoritos;
+      //this.cargarUserAfter()
     });
     this.usuarioStorage = await this.storage.get('usuario');
     console.log(this.usuarioStorage.favoritos[0])}});
-    
+
+
     
   }
+
+
+async verificaSiCarrito(favorito:any){
+  const yaEstaEnCarrito = this.usuarioStorage.carrito.some(item => item.titulo === favorito.titulo);
+  if (yaEstaEnCarrito) {
+    if (confirm("Ya tienes este artículo en el carrito. ¿Quieres volver a meterlo?")) {
+      this.agregarAlCarrito(favorito) // Si el usuario acepta, agrega el artículo
+    }
+  } else {
+    this.agregarAlCarrito(favorito) // Si no está en el carrito, simplemente lo agrega
+  }
+
+}
+
+async eliminarDeFav(favorito:any){
+const req={
+  titulo: favorito.titulo,
+  email:this.usuarioStorage.email
+}
+this.http.post("https://bookserver-6e5c8a077822.herokuapp.com/usuario/eliminarDeFavoritos", req).subscribe(async (data: any) => {
+  console.log("lerelere"+ data.usuario)
+  this.usuarioService.setUsuario(data.usuario);
+  console.log(data+ "data")
+  console.log(data.token+ "data.token")
+  console.log("dataToken"+data.token)
+  this.usuarioService.guardarToken(data.token);
+  this.usuarioStorage=data.usuario;
+  await this.storage.set('usuario', this.usuarioStorage);
+  // Actualiza la lista de favoritos en el estado local
+  this.favoritos = this.usuarioStorage.favoritos;
+  //this.cargarUserAfter()
+});
+
+
+
+
+}
 }

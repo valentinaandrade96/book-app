@@ -1,14 +1,14 @@
 <app-cabecera [titulo]="' '" [color]="'sucess'"></app-cabecera><ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <!-- Botón para agregar a favoritos con el icono de un corazón -->
-      <ion-button (click)="agregarFavoritos()">
+     
+      <ion-button (click)="verificaSiFavoritos()">
         <ion-icon name="heart-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <!-- Botón para agregar al carrito con el icono de un carrito de compras -->
-      <ion-button (click)="agregarAlCarrito()">
+    
+      <ion-button (click)="verificaSiCarrito()">
         <ion-icon name="cart-outline"></ion-icon>
       </ion-button>
     </ion-buttons>

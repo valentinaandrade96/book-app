@@ -1,0 +1,23 @@
+ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    --inner-border-width: 0;
+    --border-width: 0;
+  }
+  
+  .item-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: start; /* Alinea los botones a la izquierda debajo del título */
+  }
+  
+  ion-button {
+    margin-top: 5px; /* Espacio entre el título y el botón */
+  }
+  
+  ion-icon {
+    font-size: 1.5rem;
+    margin-top: 10px; /* Espacio entre el botón y el icono de eliminar */
+    cursor: pointer; /* Cambia el cursor a un puntero al pasar sobre el icono */
+  }
+  
