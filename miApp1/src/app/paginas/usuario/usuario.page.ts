@@ -28,4 +28,10 @@ export class UsuarioPage implements OnInit {
   favortios() {
     this.navCtrl.navigateForward('/favoritos');
   }
+  /*
+
+  esAdmin(): boolean {
+    //return this.usuarioStorage && this.usuarioStorage.rol === 'admin';
+  }
+  */
 }

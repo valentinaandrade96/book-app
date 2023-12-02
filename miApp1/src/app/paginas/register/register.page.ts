@@ -132,16 +132,20 @@ export class RegisterPage implements OnInit {
 
       }).subscribe(async (response: RespuestaGetToken)=>{
         console.log('response', response);
+        console.log('response.message'+ response.message);
+        console.log('response.message'+ response['message']);
         if(response.status=='fail'){
         console.log('error al crear el usuario');
          
         }else{
-          
+          this._usuarioService.guardarToken( response.token )
+        
+        this._usuarioService.setUsuario(response['usuarioDB'])
             // Guarda el token en localStorage
-            this._usuarioService.setSession(response);
+           // this._usuarioService.setSession(response);
             this._usuarioService.setUsuario(response.usuarioDB)
-            console.log(response.usuarioDB)
-          
+            console.log("response['usuarioDB']"+response['usuarioDb'])
+            console.log("response.usuarioDB"+response.usuarioDB)
           
           //this.modal.dissmis(null,'cancel');
           this.router.navigateByUrl('/libros');

@@ -28,9 +28,9 @@
           <ion-label>ISBN:</ion-label>
           <ion-text>{{ libro.ISBN }}</ion-text>
         </ion-item>
-        <ion-item>
-          <ion-label>Precio de Compra:</ion-label>
-          <ion-text>{{ libro.precio_compra }}</ion-text>
+        <ion-item *ngIf="esAdmin()">
+          <ion-label >Precio de Compra:</ion-label>
+          <ion-text >{{ libro.precio_compra }}</ion-text>
         </ion-item>
         <ion-item>
           <ion-label>Precio de Venta:</ion-label>
