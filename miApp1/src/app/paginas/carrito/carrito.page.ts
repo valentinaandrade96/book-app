@@ -55,7 +55,7 @@ export class CarritoPage implements OnInit {
       
       email:this.usuarioStorage.email
     }
-
+console.log(this.usuarioStorage.email)
     this.http.post("https://bookserver-6e5c8a077822.herokuapp.com/usuario/moverCarritoACompras", body).subscribe(async (data: any) => {
       if(data){
       //console.log(data)

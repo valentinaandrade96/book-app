@@ -30,6 +30,16 @@ export class FavoritosPage implements OnInit {
     this.favoritos = [];
   }
   }
+  async cargarUserAfter(){
+    
+    this.usuarioStorage = await this.storage.get('usuario');
+    if(this.usuarioStorage){
+    this.favoritos=this.usuarioStorage.favoritos;
+  }else{
+    this.favoritos = [];
+  }
+  this.router.navigateByUrl('/favoritos');
+  }
   async agregarAlCarrito(favorito:any){
     const body={
       titulo: favorito.titulo,
@@ -37,6 +47,7 @@ export class FavoritosPage implements OnInit {
     }
 
     this.http.post("https://bookserver-6e5c8a077822.herokuapp.com/usuario/agregarCarrito", body).subscribe(async (data: any) => {
+      console.log("data"+data)
       if(data){
       //console.log(data)
       this.usuarioService.setUsuario(data.usuario);
@@ -56,8 +67,8 @@ export class FavoritosPage implements OnInit {
       console.log(data.token+ "data.token")
       console.log("dataToken"+data.token)
       this.usuarioService.guardarToken(data.token);
-      this.router.navigateByUrl('/favoritos');
       
+      this.cargarUserAfter()
     });
     this.usuarioStorage = await this.storage.get('usuario');
     console.log(this.usuarioStorage.favoritos[0])}});
