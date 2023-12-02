@@ -3,6 +3,7 @@ import { Compra, Usuario } from 'src/app/interfaces/interfaces';
 import { Storage } from '@ionic/storage-angular';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favoritos',
@@ -12,7 +13,7 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 export class FavoritosPage implements OnInit {
   usuarioStorage: Usuario;
   favoritos: Compra[]=[]
-  constructor(private storage: Storage,private http: HttpClient,private usuarioService: UsuarioService,) { }
+  constructor(private storage: Storage,private http: HttpClient,private usuarioService: UsuarioService,private router: Router) { }
 
   ngOnInit() {
     this.cargarUser();
@@ -55,11 +56,12 @@ export class FavoritosPage implements OnInit {
       console.log(data.token+ "data.token")
       console.log("dataToken"+data.token)
       this.usuarioService.guardarToken(data.token);
-      this.cargarUser();
+      this.router.navigateByUrl('/favoritos');
       
     });
     this.usuarioStorage = await this.storage.get('usuario');
     console.log(this.usuarioStorage.favoritos[0])}});
+    
     
   }
 }

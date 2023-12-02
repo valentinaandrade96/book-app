@@ -68,6 +68,9 @@ const rutas: Routes = [
   },
   {path: 'favoritos',
    loadChildren: () => import('./paginas/favoritos/favoritos.module').then(m => m.FavoritosPageModule) 
+},
+{path: 'carrito',
+ loadChildren: () => import('./paginas/carrito/carrito.module').then(m => m.CarritoPageModule) 
 }
 ];
 

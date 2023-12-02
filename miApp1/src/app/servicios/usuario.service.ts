@@ -63,7 +63,7 @@ export class UsuarioService{
             console.log("Usuario: en setUsuario 1: "+ await this.storage.get('usuario') )
             this.usuario=usuar;
             
-            await this.storage.set('usuario',usuar)
+            await this.storage.set('usuario',this.usuario)
             console.log("Usuario: en setUsuario 2: "+ await this.storage.get('usuario') )
         
           }

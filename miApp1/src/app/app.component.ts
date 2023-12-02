@@ -43,6 +43,12 @@ export class AppComponent implements OnInit {
       ruta: '/favoritos',
       color: 'sucess',
       icono:'mdi:qrcode-scan'
+    },
+    {
+      nombre: 'Carrito',
+      ruta: '/carrito',
+      color: 'sucess',
+      icono:'mdi:qrcode-scan'
     }
     
     
