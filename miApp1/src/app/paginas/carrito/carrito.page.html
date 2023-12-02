@@ -16,6 +16,9 @@
         <p>{{ item.ISBN }}</p>
         <p>{{ item.precioTotal }}</p>
       </ion-label>
+      <ion-button fill="clear" slot="end" (click)="eliminarDelCarrito(item)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-list>
   <ion-item>

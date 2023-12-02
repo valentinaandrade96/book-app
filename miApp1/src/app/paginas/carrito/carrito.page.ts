@@ -69,14 +69,14 @@ console.log(this.usuarioStorage.email)
     
     this.usuarioStorage = await this.storage.get('usuario');
     console.log("Comprar carrrito despues del token: "+this.usuarioStorage.carrito[0])}});
-    this.eliminarCarrito();
+    
     this.router.navigate(['/favoritos'])
     
   }
 
-  async eliminarCarrito(){
+  async eliminarDelCarrito(item:any){
     const body={
-      
+      titulo:item.titulo,
       email:this.usuarioStorage.email
     }
 
@@ -96,5 +96,6 @@ console.log(this.usuarioStorage.email)
     
     
   }
+ 
 
 }
