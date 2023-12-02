@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { Storage } from '@ionic/storage-angular';
-import { Usuario } from 'src/app/interfaces/interfaces';
+import { Articulo, Usuario } from 'src/app/interfaces/interfaces';
 
 
 @Component({
@@ -38,7 +38,13 @@ export class DetallesPage {
     });
     
   }
-  
+  esAdmin(): boolean {
+    return this.usuarioStorage && this.usuarioStorage.rol === 'admin';
+  }
+  iniciarEdicion() {
+   // const articulo: Articulo=
+    
+  }
 
   async obtenerDetallesLibro(titulo: string) {
     this.usuarioStorage = await this.storage.get('usuario');
