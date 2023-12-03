@@ -1,7 +1,10 @@
 <app-cabecera [titulo]="' '" [color]="'sucess'"></app-cabecera>
 
 <ion-content>
-
+  
+    <ion-text position="floating">Todos los campos son obligatorios</ion-text>
+    
+  
 <form [formGroup]="form">
   <ion-item>
     <ion-label position="floating">Nombre</ion-label>
@@ -13,15 +16,18 @@
   </ion-item>
   <ion-item>
     <ion-label position="floating">Email</ion-label>
-    <ion-input formControlName="email" type="email"></ion-input>
+    <ion-input formControlName="email" type="email">@gmail.com</ion-input>
   </ion-item>
   <ion-item >
     <ion-label position="floating">Fecha de nacimiento</ion-label>
-    <ion-input formControlName="nacimiento" type="text"></ion-input>
+    <ion-input formControlName="nacimiento" type="date"></ion-input>
   </ion-item>
   <ion-item >
     <ion-label position="floating">Sexo</ion-label>
-    <ion-input formControlName="sexo" type="text"></ion-input>
+    <ion-select formControlName="sexo">
+      <ion-select-option value="Mujer">Mujer</ion-select-option>
+      <ion-select-option value="Hombre">Hombre</ion-select-option>
+    </ion-select>
   </ion-item>
   <ion-item >
     <ion-label position="floating">Direccion</ion-label>
@@ -48,10 +54,11 @@
     <ion-input formControlName="password" [type]="passwordType">
     </ion-input>
   </ion-item>
+  <ion-item>
+    <ion-label position="floating">Confirma contraseña</ion-label>
+    <ion-input formControlName="passwordtwo" [type]="passwordType">
+    </ion-input>
+  </ion-item>
 
   <ion-button class="submit ion-margin-top" size="full"  (click)="onRegister()">Registrarse</ion-button>
   
-
-
-</form>
-</ion-content>

@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
+import { Usuario } from "../interfaces/interfaces";
 
 @Injectable({
     providedIn: 'root'
@@ -26,6 +27,13 @@ import { Observable } from "rxjs";
         pwd: pwd
       })
     }
+    private currentUserSubject = new BehaviorSubject<Usuario | null>(null);
+  currentUser = this.currentUserSubject.asObservable();
+
+  // Método para actualizar el usuario actual
+  setCurrentUser(user: Usuario): void {
+    this.currentUserSubject.next(user);
+  }
   
     onRegister(user:string, pwd:string, email:string, age:string):Observable<any>{
   

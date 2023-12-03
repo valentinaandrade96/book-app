@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { Usuario } from './interfaces/interfaces';
+import { AuthService } from './servicios/auth-service';
 
 
 
@@ -14,7 +15,7 @@ import { Usuario } from './interfaces/interfaces';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
+  public rutasComponentes:Componente[];
   public componentes: Componente[] = [
     
     {
@@ -102,27 +103,52 @@ export class AppComponent implements OnInit {
     
   ];
 
-  constructor(private route: ActivatedRoute,private modalController: ModalController,private storage: Storage) {
+  constructor(private route: ActivatedRoute,private modalController: ModalController,private storage: Storage,private authService:AuthService ) {
 
    }
 public nombre:string;
-
+usuarioActual: Usuario;
 usuarioStorage: Usuario;
   ngOnInit() {
+    this.authService.currentUser.subscribe(user => {
+      this.usuarioActual = user;
+      // Aquí puedes realizar acciones adicionales cada vez que el usuario cambie
+    });
+    this.getUsuario();
+    //this.geComponents();
     this.route.queryParams.subscribe(params => {
       this.nombre=params.name;
       console.log(params.name);
-      this.getUsuario()
+      
+      
+/*
+      console.log("esAdmin()"+ this.esAdmin())
+      console.log("esUser()"+ this.esUser())
+      */
     });}
 
     async getUsuario(){
       await this.storage.create();
       this.usuarioStorage = await this.storage.get('usuario');
     }
-
+   
+    async geComponents(){
+      
+      if(this.usuarioStorage.rol === 'admin'){
+        this.rutasComponentes=this.admin;
+      }else{
+        this.rutasComponentes=this.componentes;
+      }
+      console.log( "this.rutasComponentes" +this.rutasComponentes);
+    }
+/*
     esAdmin(): boolean {
       return this.usuarioStorage && this.usuarioStorage.rol === 'admin';
     }
+    esUser(): boolean {
+      return this.usuarioStorage && this.usuarioStorage.rol === 'usuario';
+    }
+    */
     /*
     this.storage.create();
     this.storage.get('usuario').then((usuario) => {

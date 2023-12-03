@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
   }
   public mail:string;
   isAdmin=false;
-  constructor(private _usuarioService:UsuarioService , private _toastController: ToastController,private navCtrl: NavController,private formBuilder: FormBuilder, 
+  constructor(private authService: AuthService, private _usuarioService:UsuarioService , private _toastController: ToastController,private navCtrl: NavController,private formBuilder: FormBuilder, 
     
     private router: Router,private auth:AuthService
     ) {
@@ -90,7 +90,7 @@ console.log(username+""+pwd)
        
         //this._usuarioService.setSession(response);
         this._usuarioService.guardarToken( response.token )
-        
+        this.authService.setCurrentUser(response.usuarioDB);
         this._usuarioService.setUsuario(response['usuarioDB'])
         console.log(response)
         console.log(response.usuarioDB.rol)

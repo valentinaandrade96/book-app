@@ -8,8 +8,8 @@
 
 <ion-content *ngIf="libro">
   <ion-list>
-    <ion-button (click)="toggleEditMode()">
-      {{ isEditMode ? 'Guardar' : 'Editar' }}
+    <ion-button *ngIf="!isEditMode" (click)="toggleEditMode()">
+      Editar
     </ion-button>
     <ion-item>
       <ion-label position="floating">ISBN</ion-label>

@@ -42,7 +42,8 @@ export class RegisterPage implements OnInit {
       localidad: new FormControl('', Validators.required),
       pais: new FormControl('', Validators.required),
       cp: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('', Validators.required),
+      passwordtwo: new FormControl('', Validators.required)
     })
   }
 
@@ -84,6 +85,7 @@ export class RegisterPage implements OnInit {
   onLogin(){
     const username = this.form.controls.username.value;
     const pwd = this.form.controls.pwd.value;
+    
 
     this.auth.onLoginUser(username, pwd).subscribe({
       next: res => {
@@ -102,6 +104,7 @@ export class RegisterPage implements OnInit {
   onRegister(){
 
     if(this.form.valid){
+      if(this.form.controls.password.value== this.form.controls.passwordtwo.value){
       const nombre = this.form.controls.nombre.value;
       const password = this.form.controls.password.value;
       const email = this.form.controls.email.value;
@@ -136,8 +139,9 @@ export class RegisterPage implements OnInit {
         console.log('response.message'+ response['message']);
         if(response.status=='fail'){
         console.log('error al crear el usuario');
-         
+         alert('Este correo ya ha sido registrado anteriormente')
         }else{
+
           this._usuarioService.guardarToken( response.token )
         
         this._usuarioService.setUsuario(response['usuarioDB'])
@@ -154,9 +158,12 @@ export class RegisterPage implements OnInit {
     
     
     
-      })
+      })}else{
+        alert("Las contraseñas no coinciden")
+      }
     }else{
       console.log('Los datos del formulario no son válidos')
+      alert("Los datos no son válidos")
     }
   }
     

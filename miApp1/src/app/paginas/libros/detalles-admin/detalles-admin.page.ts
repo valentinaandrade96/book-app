@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { NavController } from '@ionic/angular';
@@ -30,6 +30,7 @@ export class DetallesAdminPage implements OnInit {
   articulo: Articulo;
 tituloBueno:string;
   constructor(private route: ActivatedRoute,
+    private router: Router,
               private navCtrl: NavController,
               private usuarioService: UsuarioService,
               private http: HttpClient,
@@ -85,11 +86,13 @@ tituloBueno:string;
   }
   guardarCambios() {
     this.asignarValoresDeArticulo(); 
+    console.log("guardarCambios"+this.articulo.titulo)
    
     this.http.post("https://bookserver-6e5c8a077822.herokuapp.com/articulo/update", this.articulo).subscribe(async (data: any) => {
-
-    if(data.status=='Ok'){
+console.log(data)
+    if(data.ok==true){
        alert("Se ha actualizado correctamente el artículo.");
+       this.router.navigateByUrl('/libros')
        this.obtenerDetallesLibro(this.titulo);
        
     }
