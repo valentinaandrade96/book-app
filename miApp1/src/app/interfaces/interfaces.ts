@@ -64,7 +64,7 @@ export interface UserUp  {
 
 
 export interface Articulo  {
-    ISBN: Date;
+  ISBN: string;
     titulo: string;
     precio_compra: Number;
     precio_venta: Number;

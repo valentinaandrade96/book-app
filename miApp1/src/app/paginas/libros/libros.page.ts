@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
-
+import { Storage } from '@ionic/storage-angular';
+import { Usuario } from 'src/app/interfaces/interfaces';
 @Component({
   selector: 'app-libros',
   templateUrl: './libros.page.html',
@@ -11,14 +12,23 @@ export class LibrosPage implements OnInit {
   libros: any[] = [];
   pageNumber: number = 1;
   public busqueda:string='';
-
-  constructor(private http: HttpClient,private navCtrl: NavController) {}
+  usuarioStorage: Usuario;
+  constructor(private http: HttpClient,private navCtrl: NavController,private storage: Storage) {
+    
+  }
 
   ngOnInit() {
     this.loadBooks();
+    this.userSto();
+  }
+  async userSto(){
+    this.usuarioStorage = await this.storage.get('usuario');
   }
   cambiaTexto(event:any){
     this.busqueda = event.target.value;
+  }
+  esAdmin(): boolean {
+    return this.usuarioStorage && this.usuarioStorage.rol === 'admin';
   }
 
   loadBooks() {
@@ -38,6 +48,10 @@ export class LibrosPage implements OnInit {
     });
   }
   verDetalles(libro) {
+    if(!this.esAdmin()){
     this.navCtrl.navigateForward(`/libros/detalles/${libro.titulo}`);
+  }else{
+    this.navCtrl.navigateForward(`/libros/detalleadmin/${libro.titulo}`);
+  }
   }
 }

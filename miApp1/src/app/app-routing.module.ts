@@ -66,7 +66,11 @@ const rutas: Routes = [
     path: 'compras',
     loadChildren: () => import('./paginas/compras/compras.module').then( m => m.ComprasPageModule)
   },
-  
+  {
+    
+    path: 'libros/detalleadmin/:id',
+    loadChildren: () => import('./paginas/libros/detalles-admin/detalles-admin.module').then( m => m.DetallesAdminPageModule)
+  },
   {
     
     path: 'libros/detalles/:id',

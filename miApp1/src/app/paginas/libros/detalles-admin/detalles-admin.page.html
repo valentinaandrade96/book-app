@@ -1,0 +1,60 @@
+<app-cabecera [titulo]="' '" [color]="'sucess'"></app-cabecera><ion-header>
+
+</ion-header><ion-header>
+  <ion-toolbar>
+    <ion-title>detallesAdmin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="libro">
+  <ion-list>
+    <ion-button (click)="toggleEditMode()">
+      {{ isEditMode ? 'Guardar' : 'Editar' }}
+    </ion-button>
+    <ion-item>
+      <ion-label position="floating">ISBN</ion-label>
+      <ion-input type="text" [(ngModel)]="libro.ISBN"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input type="text" [(ngModel)]="libro.titulo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Precio de Compra</ion-label>
+      <ion-input type="number" [(ngModel)]="libro.precio_compra"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Precio de Venta</ion-label>
+      <ion-input type="number" [(ngModel)]="libro.precio_venta"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Categoría</ion-label>
+      <ion-input type="text" [(ngModel)]="libro.categoria"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input type="text" [(ngModel)]="libro.descripcion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Autor</ion-label>
+      <ion-input type="text" [(ngModel)]="libro.autor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Proveedor</ion-label>
+      <ion-input type="text" [(ngModel)]="libro.proveedor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Teléfono del Proveedor</ion-label>
+      <ion-input type="text" [(ngModel)]="libro.telefonoProveedor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Imagen URL</ion-label>
+      <ion-input type="text" [(ngModel)]="libro.img"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Stock</ion-label>
+      <ion-input type="number" [(ngModel)]="libro.stock"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button *ngIf="isEditMode" expand="full" (click)="guardarCambios()">Guardar Cambios</ion-button>
+</ion-content>
