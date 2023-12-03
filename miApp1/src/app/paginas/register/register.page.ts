@@ -166,6 +166,9 @@ export class RegisterPage implements OnInit {
       alert("Los datos no son válidos")
     }
   }
+  back(){
+    this.router.navigateByUrl('/first');
+  }
     
   
 }

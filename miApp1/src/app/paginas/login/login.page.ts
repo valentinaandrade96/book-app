@@ -113,6 +113,9 @@ console.log(username+""+pwd)
 
   })
 }
+back(){
+  this.router.navigateByUrl('/first');
+}
 }
 /*
   this.auth.onLoginUser(username, pwd).subscribe({

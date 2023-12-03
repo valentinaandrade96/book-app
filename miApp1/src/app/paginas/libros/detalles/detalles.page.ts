@@ -79,7 +79,7 @@ export class DetallesPage {
       console.log()
       this.usuarioService.guardarToken(data.token);
       if(data.ok == true){
-        alert("Añadido correctamente al carrito.");
+        alert("Añadido correctamente a favoritos.");
       }
     });
   }
@@ -101,6 +101,7 @@ export class DetallesPage {
     });
   }
   async verificaSiCarrito(){
+    this.usuarioStorage = await this.storage.get('usuario');
     const yaEstaEnCarrito = this.usuarioStorage.carrito.some(item => item.titulo === this.libro.titulo);
     if (yaEstaEnCarrito) {
       if (confirm("Ya tienes este artículo en el carrito. ¿Quieres volver a meterlo?")) {
@@ -113,6 +114,7 @@ export class DetallesPage {
   }
 
   async verificaSiFavoritos(){
+    this.usuarioStorage = await this.storage.get('usuario');
     console.log()
     const yaEstaEnFavoritos = this.usuarioStorage.favoritos.some(item => item.titulo === this.libro.titulo
       
@@ -120,7 +122,7 @@ export class DetallesPage {
     console.log(yaEstaEnFavoritos +"yaEstaEnFavoritos")
     if (yaEstaEnFavoritos) {
       alert("Este artículo ya está en tus favoritos.");
-      return; 
+     return; 
     }else{
       this.agregarFavoritos();
     }
