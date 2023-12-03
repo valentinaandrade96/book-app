@@ -95,9 +95,28 @@ console.log(data)
        this.router.navigateByUrl('/libros')
        this.obtenerDetallesLibro(this.titulo);
        
+    }else{
+      alert("No se ha podido actualizar el el artículo")
     }
     });
 
 
+  }
+
+  deleteLibro(){
+    this.http.delete("https://bookserver-6e5c8a077822.herokuapp.com/articulo/delete/"+ this.articulo.titulo).subscribe(async (data: any) => {
+      const confirmacion = confirm("¿Seguro que quieres borrar este libro?")
+     if(confirmacion) {
+    if(data.success==true){
+
+        alert("Se ha borrado correctamente el artículo.");
+        this.router.navigateByUrl('/libros')
+        
+        
+     }else{
+      alert("No se ha podido borrar el artículo")
+     }}
+
+    });
   }
 }

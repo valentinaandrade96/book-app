@@ -68,24 +68,30 @@ export class AppComponent implements OnInit {
   public admin: Componente[] = [
     
     {
-      nombre: 'Iniciio',
+      nombre: 'Inicio',
       ruta: '/libros',
       color: 'black',
       icono:'infinite-outline'
     },
-    
+    {
+      nombre: 'Subir nuevo Libro',
+      ruta: '/nuevolibro',
+      color: 'black',
+      icono:'infinite-outline'
+    },
     
    
     
+    
     {
-      nombre: 'Mi cuenta',
-      ruta: '/usuario',
+      nombre: 'Próximos Envios',
+      ruta: '/admin',
       color: 'sucess',
       icono:'mdi:qrcode-scan'
     },
     {
-      nombre: 'Próximos Envios',
-      ruta: '/admin',
+      nombre: 'Mi cuenta',
+      ruta: '/usuario',
       color: 'sucess',
       icono:'mdi:qrcode-scan'
     },

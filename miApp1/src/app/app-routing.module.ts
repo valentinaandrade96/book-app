@@ -81,6 +81,9 @@ const rutas: Routes = [
 },
 {path: 'carrito',
  loadChildren: () => import('./paginas/carrito/carrito.module').then(m => m.CarritoPageModule) 
+},
+{path: 'nuevolibro',
+ loadChildren: () => import('./paginas/nuevolibro/nuevolibro.module').then(m => m.NuevolibroPageModule) 
 }
 ];
 

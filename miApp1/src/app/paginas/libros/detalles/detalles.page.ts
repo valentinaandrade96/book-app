@@ -113,7 +113,11 @@ export class DetallesPage {
   }
 
   async verificaSiFavoritos(){
-    const yaEstaEnFavoritos = this.usuarioStorage.favoritos.some(item => item.titulo === this.libro.titulo);
+    console.log()
+    const yaEstaEnFavoritos = this.usuarioStorage.favoritos.some(item => item.titulo === this.libro.titulo
+      
+    );
+    console.log(yaEstaEnFavoritos +"yaEstaEnFavoritos")
     if (yaEstaEnFavoritos) {
       alert("Este artículo ya está en tus favoritos.");
       return; 

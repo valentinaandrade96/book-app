@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { Usuario } from 'src/app/interfaces/interfaces';
+import { AuthService } from 'src/app/servicios/auth-service';
 @Component({
   selector: 'app-libros',
   templateUrl: './libros.page.html',
@@ -13,11 +14,16 @@ export class LibrosPage implements OnInit {
   pageNumber: number = 1;
   public busqueda:string='';
   usuarioStorage: Usuario;
-  constructor(private http: HttpClient,private navCtrl: NavController,private storage: Storage) {
+  usuarioActual: Usuario;
+  constructor(private http: HttpClient,private navCtrl: NavController,private storage: Storage, private authService:AuthService) {
     
   }
 
   ngOnInit() {
+    this.authService.currentUser.subscribe(user => {
+      this.usuarioActual = user;
+      // Aquí puedes realizar acciones adicionales cada vez que el usuario cambie
+    });
     this.loadBooks();
     this.userSto();
   }
@@ -48,7 +54,7 @@ export class LibrosPage implements OnInit {
     });
   }
   verDetalles(libro) {
-    if(!this.esAdmin()){
+    if(this.usuarioActual.rol === 'usuario'){
     this.navCtrl.navigateForward(`/libros/detalles/${libro.titulo}`);
   }else{
     this.navCtrl.navigateForward(`/libros/detalleadmin/${libro.titulo}`);
