@@ -78,6 +78,9 @@ export class DetallesPage {
       this.usuarioService.setUsuario(data.usuario);
       console.log()
       this.usuarioService.guardarToken(data.token);
+      if(data.ok == true){
+        alert("Añadido correctamente al carrito.");
+      }
     });
   }
 
@@ -92,6 +95,9 @@ export class DetallesPage {
       this.usuarioService.setUsuario(data.usuario);
       console.log()
       this.usuarioService.guardarToken(data.token);
+      if(data.ok == true){
+        alert("Añadido correctamente al carrito.");
+      }
     });
   }
   async verificaSiCarrito(){

@@ -75,6 +75,7 @@ console.log(username+""+pwd)
     console.log('response', response);
     if(response.status=='fail'){
     console.log('error de inicio de sesión');
+    alert("Usuario o contraseña incorrecta");
       const toast= await this._toastController.create({
         duration:5000,
         message: response.message,
@@ -88,7 +89,7 @@ console.log(username+""+pwd)
       if (response.token) {
        
         //this._usuarioService.setSession(response);
-        this._usuarioService.guardarToken( response['token'] )
+        this._usuarioService.guardarToken( response.token )
         
         this._usuarioService.setUsuario(response['usuarioDB'])
         console.log(response)
@@ -96,7 +97,7 @@ console.log(username+""+pwd)
         console.log(typeof response.usuarioDB)
         if(response.usuarioDB.rol=='admin'){
           console.log("response.usuarioDB.rol es  : response.usuarioDB.rol=='admin'"+ response.usuarioDB.rol)
-          this.router.navigateByUrl('/admin');
+          this.router.navigateByUrl('/libros');
         }else{
           this.router.navigateByUrl('/libros');
           console.log("response.usuarioDB.rol es : "+ response.usuarioDB.rol)

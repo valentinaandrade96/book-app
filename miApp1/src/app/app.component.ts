@@ -3,6 +3,8 @@ import { Componente } from './interfaces/componente';
 import { ComponentesService } from './servicios/componentes.service';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
+import { Usuario } from './interfaces/interfaces';
 
 
 
@@ -23,12 +25,7 @@ export class AppComponent implements OnInit {
     },
     
     
-    {
-      nombre: 'Log out',
-      ruta: '/button',
-      color: 'sucess',
-      icono:'radio-button-on-outline'
-    },
+  
     
     {
       nombre: 'Mi cuenta',
@@ -36,6 +33,7 @@ export class AppComponent implements OnInit {
       color: 'sucess',
       icono:'mdi:qrcode-scan'
     },
+   
     
     
     {
@@ -49,23 +47,82 @@ export class AppComponent implements OnInit {
       ruta: '/carrito',
       color: 'sucess',
       icono:'mdi:qrcode-scan'
+    },
+    {
+      nombre: 'Compras',
+      ruta: '/compras',
+      color: 'sucess',
+      icono:'mdi:qrcode-scan'
+    },
+    {
+      nombre: 'Log out',
+      ruta: '/button',
+      color: 'sucess',
+      icono:'radio-button-on-outline'
     }
+    
+   
+    
+  ];
+  public admin: Componente[] = [
+    
+    {
+      nombre: 'Iniciio',
+      ruta: '/libros',
+      color: 'black',
+      icono:'infinite-outline'
+    },
+    
+    
+   
+    
+    {
+      nombre: 'Mi cuenta',
+      ruta: '/usuario',
+      color: 'sucess',
+      icono:'mdi:qrcode-scan'
+    },
+    {
+      nombre: 'Próximos Envios',
+      ruta: '/admin',
+      color: 'sucess',
+      icono:'mdi:qrcode-scan'
+    },
+    
+    {
+      nombre: 'Log out',
+      ruta: '/button',
+      color: 'sucess',
+      icono:'radio-button-on-outline'
+    },
+    
     
     
    
     
   ];
 
-  constructor(private route: ActivatedRoute,private modalController: ModalController,) {
+  constructor(private route: ActivatedRoute,private modalController: ModalController,private storage: Storage) {
 
    }
 public nombre:string;
-public esAdmin: boolean = false
+
+usuarioStorage: Usuario;
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.nombre=params.name;
       console.log(params.name);
-    });
+      this.getUsuario()
+    });}
+
+    async getUsuario(){
+      await this.storage.create();
+      this.usuarioStorage = await this.storage.get('usuario');
+    }
+
+    esAdmin(): boolean {
+      return this.usuarioStorage && this.usuarioStorage.rol === 'admin';
+    }
     /*
     this.storage.create();
     this.storage.get('usuario').then((usuario) => {
@@ -89,5 +146,5 @@ public esAdmin: boolean = false
       }
       
     }*/
-  }
+  
 }

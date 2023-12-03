@@ -49,8 +49,16 @@ export class CarritoPage implements OnInit {
     this.carrito = [];
   }}
 
+verificaCompra(){
+  if(this.carrito.length>0){
+    this.comprar();
+  }else{
+    alert("No tienes elementos en el carrito que comprar");
+  }
 
+}
   async comprar(){
+  
     const body={
       
       email:this.usuarioStorage.email
@@ -63,15 +71,26 @@ console.log(this.usuarioStorage.email)
       console.log("edata.mensaj "+data.mensaje)
       //console.log()
       this.usuarioService.guardarToken(data.token);
+      this.usuarioStorage=data.usuario;
       
-      
+     
+      this.carrito = this.usuarioStorage.carrito;
+      this.precioTotalPedido=0;
+      this.carrito.forEach((item)=>{
+        console.log("precioTotalPedido"+this.precioTotalPedido)
+        console.log("item.precioTotal"+item.precioTotal)
+        this.precioTotalPedido=this.precioTotalPedido+item.precioTotal});
+      this.descuento="10%"
+      this.resultadoPrecio=this.precioTotalPedido-(this.precioTotalPedido*0.1)
       
     
     this.usuarioStorage = await this.storage.get('usuario');
-    console.log("Comprar carrrito despues del token: "+this.usuarioStorage.carrito[0])}});
+    console.log("Comprar carrrito despues del token: "+this.usuarioStorage.carrito[0])
+  
+  }});
+   
     
-    this.router.navigate(['/favoritos'])
-    
+      
   }
 
   async eliminarDelCarrito(item:any){
@@ -92,7 +111,19 @@ console.log(this.usuarioStorage.email)
       
     
     this.usuarioStorage = await this.storage.get('usuario');
-    console.log("Ddespues de eliminar del carrito: "+this.usuarioStorage.carrito[0])}});
+    this.usuarioStorage=data.usuario;
+    this.precioTotalPedido=0;
+    this.carrito.forEach((item)=>{
+      console.log("precioTotalPedido"+this.precioTotalPedido)
+      console.log("item.precioTotal"+item.precioTotal)
+      this.precioTotalPedido=this.precioTotalPedido+item.precioTotal});
+    this.descuento="10%"
+    this.resultadoPrecio=this.precioTotalPedido-(this.precioTotalPedido*0.1)
+      
+      
+      this.carrito = this.usuarioStorage.carrito;
+    console.log("Ddespues de eliminar del carrito: "+this.usuarioStorage.carrito[0]);
+  }});
     
     
   }

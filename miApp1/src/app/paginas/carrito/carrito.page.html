@@ -6,7 +6,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="carrito.length > 0; else noFavoritos">
+  <ion-list *ngIf="carrito.length > 0; else nocarrito">
     <ion-item *ngFor="let item of carrito">
       <ion-thumbnail slot="start">
         <img [src]="item.img" alt="{{ item.titulo }}">
@@ -30,11 +30,11 @@
     
   </ion-item>
   <ion-item>
-    <ion-button expand="block" (click)="comprar()">Comprar</ion-button>
+    <ion-button expand="block" (click)="verificaCompra()">Comprar</ion-button>
     
   </ion-item>
-  <ng-template #noFavoritos>
-    <ion-text color="medium">No tienes elementos en favoritos</ion-text>
+  <ng-template #nocarrito>
+    <ion-text color="medium">No tienes elementos en el carrito</ion-text>
   </ng-template>
 </ion-content>
 

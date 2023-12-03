@@ -7,11 +7,15 @@
 </ion-header>
 
 <ion-content>
+  <ion-text *ngIf="usuarioStorage">
+    <h2>Hola, {{ usuarioStorage.nombre }} {{usuarioStorage.apellidos}}</h2>
+  </ion-text>
   <ion-button expand="full" (click)="irAEditarPerfil()">Editar Perfil</ion-button>
 
  
   <ion-button expand="full" (click)="irACambiarContrasena()">Cambiar Contraseña</ion-button>
   <ion-button expand="full" (click)="favortios()">Compras</ion-button>
+  <ion-button *ngIf="esAdmin()" expand="full" (click)="envios()">Próximos Envios</ion-button>
   <!-- Enlace a la página de cambiar contraseña 
   <ion-button expand="full" (click)="irACompras()">Compras</ion-button>
 

@@ -63,6 +63,12 @@ const rutas: Routes = [
   
   {
     
+    path: 'compras',
+    loadChildren: () => import('./paginas/compras/compras.module').then( m => m.ComprasPageModule)
+  },
+  
+  {
+    
     path: 'libros/detalles/:id',
     loadChildren: () => import('./paginas/libros/detalles/detalles.module').then( m => m.DetallesPageModule)
   },

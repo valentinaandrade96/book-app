@@ -19,10 +19,16 @@
 <ion-content>
   <ion-card>
     <img [src]="libro.img" alt="{{ libro.titulo }}" />
-    <ion-button color="success" expand="block" (click)="verificaSiFavoritos()">
+    <ion-button *ngIf="!esAdmin()" color="success" expand="block" (click)="verificaSiFavoritos()">
       Favorito
       <ion-icon name="heart-outline" slot="start"></ion-icon>
     </ion-button>
+    
+      <ion-button *ngIf="!esAdmin()" color="success" expand="block" (click)="verificaSiCarrito()">
+        Comprar
+        <ion-icon name="cart-outline" slot="start"></ion-icon>
+      </ion-button>
+   
     <ion-card-header>
       <ion-card-title>{{ libro.titulo }}</ion-card-title>
     </ion-card-header>
@@ -64,12 +70,7 @@
           <ion-label >Stock:</ion-label>
           <ion-text>{{ libro.stock }}</ion-text>
         </ion-item>
-        <ion-item>
-        <ion-button color="success" expand="block" (click)="verificaSiCarrito()">
-          Comprar
-          <ion-icon name="cart-outline" slot="start"></ion-icon>
-        </ion-button>
-      </ion-item>
+        
       </ion-list>
     </ion-card-content>
   </ion-card>

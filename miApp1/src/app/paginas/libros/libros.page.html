@@ -15,6 +15,7 @@
         <div *ngFor="let libro of libros | bookFilter:busqueda" class="custom-card">
           <img [src]="libro.img" alt="{{ libro.titulo }}" class="book-img">
           <div class="book-info">
+            <p>{{ libro.titulo }}</p>
             <h2>{{ libro.titulo }}</h2>
             <p>{{ libro.autor }}</p>
             <ion-button (click)="verDetalles(libro)" fill="solid" class="details-button">Ver Detalles</ion-button>

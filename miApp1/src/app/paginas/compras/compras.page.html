@@ -1,0 +1,38 @@
+<app-cabecera [titulo]="' '" [color]="'sucess'"></app-cabecera>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="compras.length > 0; else noCompra">
+    <ion-item *ngIf="noEnviados.length > 0 "><ion-label>Próximos envíos </ion-label></ion-item>
+    
+  
+    <ion-item *ngFor="let noEenviado of noEnviados">
+      <ion-thumbnail slot="start">
+        <img [src]="noEenviado.img" alt="{{ noEenviado.titulo }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ noEenviado.titulo }}</h2>
+        
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="enviados.length > 0 "><ion-label>Compras recibidas</ion-label></ion-item>
+    <ion-item *ngFor="let enviado of enviados">
+      <ion-thumbnail slot="start">
+        <img [src]="enviado.img" alt="{{ enviado.titulo }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ enviado.titulo }}</h2>
+        <p>{{ enviado.ISBN }}</p>
+      </ion-label>
+    </ion-item>
+  
+  </ion-list>
+  <ng-template #noCompra>
+    <ion-text color="medium">No tienes ninguna compra</ion-text>
+  </ng-template>
+
+</ion-content>
