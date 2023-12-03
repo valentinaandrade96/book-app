@@ -1,9 +1,67 @@
+<app-cabecera [titulo]="' '" [color]="'sucess'"></app-cabecera>
 <ion-header>
   <ion-toolbar>
-    <ion-title>nuevolibro</ion-title>
+    <ion-title>Crear Artículo</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="articuloForm" (ngSubmit)="crearArticulo()">
+    <ion-item>
+      <ion-label position="floating">ISBN</ion-label>
+      <ion-input formControlName="ISBN" type="text"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input formControlName="titulo" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio de Compra</ion-label>
+      <ion-input formControlName="precio_compra" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio de Venta</ion-label>
+      <ion-input formControlName="precio_venta" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Categoría</ion-label>
+      <ion-input formControlName="categoria" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea formControlName="descripcion"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Autor</ion-label>
+      <ion-input formControlName="autor" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Proveedor</ion-label>
+      <ion-input formControlName="proveedor" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Teléfono del Proveedor</ion-label>
+      <ion-input formControlName="telefonoProveedor" type="tel"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Imagen URL</ion-label>
+      <ion-input formControlName="img" type="url"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Stock</ion-label>
+      <ion-input formControlName="stock" type="number"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" [disabled]="!articuloForm.valid">Crear Artículo</ion-button>
+  </form>
 </ion-content>
