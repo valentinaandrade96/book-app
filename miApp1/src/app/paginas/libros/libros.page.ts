@@ -57,7 +57,11 @@ export class LibrosPage implements OnInit {
     if(this.usuarioActual?.rol === 'usuario' || this.usuarioStorage?.rol === 'usuario'){
     this.navCtrl.navigateForward(`/libros/detalles/${libro.titulo}`);
   }else{
+    if(this.usuarioActual?.rol === 'admin' || this.usuarioStorage?.rol === 'admin'){
     this.navCtrl.navigateForward(`/libros/detalleadmin/${libro.titulo}`);
+  }else{
+    this.authService.setCurrentUser(this.usuarioStorage);
+    this.navCtrl.navigateForward(`/libros`);
   }
-  }
+  }}
 }

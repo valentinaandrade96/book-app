@@ -5,6 +5,7 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { NavController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { Articulo, Usuario } from 'src/app/interfaces/interfaces';
+import { AuthService } from 'src/app/servicios/auth-service';
 
 @Component({
   selector: 'app-detalles-admin',
@@ -34,7 +35,7 @@ tituloBueno:string;
               private navCtrl: NavController,
               private usuarioService: UsuarioService,
               private http: HttpClient,
-              private storage: Storage) {
+              private storage: Storage, private authService: AuthService) {
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.tituloBueno=params['id']
@@ -43,6 +44,7 @@ tituloBueno:string;
     });
   }
   ngOnInit() {
+    
     this.obtenerDetallesLibro(this.tituloBueno);
   }
 
@@ -70,6 +72,7 @@ tituloBueno:string;
 
   async obtenerDetallesLibro(titulo: string) {
     this.usuarioStorage = await this.storage.get('usuario');
+    this.authService.setCurrentUser(this.usuarioStorage);
     this.usuarioService.obtenerDetallesLibro(titulo).subscribe(
       (response) => {
         if (response.ok) {

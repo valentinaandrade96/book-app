@@ -112,6 +112,7 @@ export class AppComponent implements OnInit {
   constructor(private route: ActivatedRoute,private modalController: ModalController,private storage: Storage,private authService:AuthService ) {
 
    }
+   menuState:string;
 public nombre:string;
 usuarioActual: Usuario;
 usuarioStorage: Usuario;
@@ -121,6 +122,7 @@ usuarioStorage: Usuario;
       // Aquí puedes realizar acciones adicionales cada vez que el usuario cambie
     });
     this.getUsuario();
+    const menuState = this.usuarioActual?.rol === 'admin' ? 'admin' : 'usuario';
     //this.geComponents();
     this.route.queryParams.subscribe(params => {
       this.nombre=params.name;

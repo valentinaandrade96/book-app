@@ -5,6 +5,7 @@ import { NavController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { Storage } from '@ionic/storage-angular';
 import { Articulo, Usuario } from 'src/app/interfaces/interfaces';
+import { AuthService } from 'src/app/servicios/auth-service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class DetallesPage {
     private navCtrl: NavController,
     private usuarioService: UsuarioService,
     private http: HttpClient,
-    private storage: Storage
+    private storage: Storage,
+    private authService: AuthService
   ) {
     
     
@@ -48,6 +50,7 @@ export class DetallesPage {
 
   async obtenerDetallesLibro(titulo: string) {
     this.usuarioStorage = await this.storage.get('usuario');
+    this.authService.setCurrentUser(this.usuarioStorage);
     console.log(titulo)
  
     this.usuarioService.obtenerDetallesLibro(titulo).subscribe(
