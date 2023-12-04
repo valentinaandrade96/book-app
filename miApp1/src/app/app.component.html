@@ -18,24 +18,26 @@
   </ion-list>
 
   <!-- Menú para usuarios regulares -->
-  <ion-list *ngIf="usuarioActual?.rol === 'usuario'" [lines]="'full'" [mode]="'ios'">
-    <ion-menu-toggle *ngFor="let c of componentes">
-      <ion-item [color]="c.color" [routerLink]="c.ruta">
-        <ion-icon slot="start" [name]="c.icono"></ion-icon>
-        {{ c.nombre }}
-      </ion-item>
-    </ion-menu-toggle>
-  </ion-list>
+<!-- Menú para usuarios normales -->
+<ion-list *ngIf="usuarioActual?.rol === 'usuario' || usuarioStorage?.rol === 'usuario'" [lines]="'full'" [mode]="'ios'">
+  <ion-menu-toggle *ngFor="let c of componentes">
+    <ion-item [color]="c.color" [routerLink]="c.ruta">
+      <ion-icon slot="start" [name]="c.icono"></ion-icon>
+      {{ c.nombre }}
+    </ion-item>
+  </ion-menu-toggle>
+</ion-list>
 
-  <!-- Menú para administradores -->
-  <ion-list *ngIf="usuarioActual?.rol === 'admin'" [lines]="'full'" [mode]="'ios'">
-    <ion-menu-toggle *ngFor="let c of admin">
-      <ion-item [color]="c.color" [routerLink]="c.ruta">
-        <ion-icon slot="start" [name]="c.icono"></ion-icon>
-        {{ c.nombre }}
-      </ion-item>
-    </ion-menu-toggle>
-  </ion-list>
+<!-- Menú para administradores -->
+<ion-list *ngIf="usuarioActual?.rol === 'admin' || usuarioStorage?.rol === 'admin'" [lines]="'full'" [mode]="'ios'">
+  <ion-menu-toggle *ngFor="let c of admin">
+    <ion-item [color]="c.color" [routerLink]="c.ruta">
+      <ion-icon slot="start" [name]="c.icono"></ion-icon>
+      {{ c.nombre }}
+    </ion-item>
+  </ion-menu-toggle>
+</ion-list>
+
 
 </ion-content>
 

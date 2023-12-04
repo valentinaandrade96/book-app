@@ -54,7 +54,7 @@ export class LibrosPage implements OnInit {
     });
   }
   verDetalles(libro) {
-    if(this.usuarioActual.rol === 'usuario'){
+    if(this.usuarioActual?.rol === 'usuario' || this.usuarioStorage?.rol === 'usuario'){
     this.navCtrl.navigateForward(`/libros/detalles/${libro.titulo}`);
   }else{
     this.navCtrl.navigateForward(`/libros/detalleadmin/${libro.titulo}`);
