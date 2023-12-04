@@ -29,7 +29,7 @@ export class RegisterPage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
     private auth:AuthService,
-    private _toastController: ToastController) { 
+    private _toastController: ToastController,private authService: AuthService) { 
 
     this.form = new FormGroup({
       nombre: new FormControl('', Validators.required),
@@ -43,7 +43,7 @@ export class RegisterPage implements OnInit {
       pais: new FormControl('', Validators.required),
       cp: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
-      passwordtwo: new FormControl('', Validators.required)
+      passwordtwo: new FormControl('')
     })
   }
 
@@ -143,8 +143,8 @@ export class RegisterPage implements OnInit {
         }else{
 
           this._usuarioService.guardarToken( response.token )
-        
-        this._usuarioService.setUsuario(response['usuarioDB'])
+          this.authService.setCurrentUser(response['usuarioDb']);
+        this._usuarioService.setUsuario(response['usuarioDb'])
             // Guarda el token en localStorage
            // this._usuarioService.setSession(response);
             this._usuarioService.setUsuario(response.usuarioDB)
