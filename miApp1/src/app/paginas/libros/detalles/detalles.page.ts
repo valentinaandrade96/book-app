@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
@@ -13,12 +13,12 @@ import { AuthService } from 'src/app/servicios/auth-service';
   templateUrl: './detalles.page.html',
   styleUrls: ['./detalles.page.scss'],
 })
-export class DetallesPage {
+export class DetallesPage implements OnInit{
   
   libro: any = {};
   cantidad: number = 1;
   usuarioStorage: Usuario;
-
+  usuarioActual:Usuario;
   constructor(
     private route: ActivatedRoute,
     private navCtrl: NavController,
@@ -39,6 +39,17 @@ export class DetallesPage {
       }
     });
     
+  }
+ngOnInit() {
+  this.authService.currentUser.subscribe(user => {
+    this.usuarioActual = user;
+  });
+    this.getUser()
+  }
+  async getUser(){
+    this.usuarioStorage = await this.storage.get('usuario');
+    
+   
   }
   esAdmin(): boolean {
     return this.usuarioStorage && this.usuarioStorage.rol === 'admin';
@@ -103,25 +114,33 @@ export class DetallesPage {
       }
     });
   }
-  async verificaSiCarrito(){
-    this.usuarioStorage = await this.storage.get('usuario');
-    const yaEstaEnCarrito = this.usuarioStorage.carrito.some(item => item.titulo === this.libro.titulo);
-    if (yaEstaEnCarrito) {
-      if (confirm("Ya tienes este artículo en el carrito. ¿Quieres volver a meterlo?")) {
-        this.agregarAlCarrito() 
-      }
-    } else {
-      this.agregarAlCarrito() 
-    }
-  
-  }
+  async verificaSiCarrito() {
+    this.getUser()
+    console.log(this.usuarioStorage.nombre + "this.usuarioStorage.nombre")
+    if (this.usuarioStorage) {
+      if (this.usuarioStorage.carrito == null || this.usuarioStorage.carrito == null) {
+        this.agregarFavoritos();
+      } else {
+        const yaEstaEnCarrito = this.usuarioStorage.carrito.some(item => item.titulo === this.libro.titulo);
+        if (yaEstaEnCarrito) {
+          if (confirm("Ya tienes este artículo en el carrito. ¿Quieres volver a meterlo?")) {
+            this.agregarAlCarrito()
+          }
+        } else {
+          this.agregarAlCarrito()
+        }
+
+        }
+
+      }else{console.log("nada, esto no funciona")}}
 
   async verificaSiFavoritos(){
-    this.usuarioStorage = await this.storage.get('usuario');
-    console.log()
-    const yaEstaEnFavoritos = this.usuarioStorage.favoritos.some(item => item.titulo === this.libro.titulo
-      
-    );
+    this.getUser()
+    //this.usuarioStorage = await this.storage.get('usuario');
+    if(this.usuarioStorage.favoritos== null){
+      this.agregarFavoritos();
+    }else{
+    const yaEstaEnFavoritos = this.usuarioStorage.favoritos.some(item => item.titulo === this.libro.titulo);
     console.log(yaEstaEnFavoritos +"yaEstaEnFavoritos")
     if (yaEstaEnFavoritos) {
       alert("Este artículo ya está en tus favoritos.");
@@ -129,6 +148,6 @@ export class DetallesPage {
     }else{
       this.agregarFavoritos();
     }
-  }
+  }}
 }
 

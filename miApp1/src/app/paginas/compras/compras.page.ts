@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular'; 
 import { Compra, Usuario } from 'src/app/interfaces/interfaces';
+import { AuthService } from 'src/app/servicios/auth-service';
 @Component({
   selector: 'app-compras',
   templateUrl: './compras.page.html',
@@ -11,7 +12,7 @@ export class ComprasPage implements OnInit {
   compras:Compra[]=[];
   enviados: Compra[]=[];
   noEnviados: Compra[]=[];
-  constructor(private storage: Storage) { }
+  constructor(private storage: Storage,private authService: AuthService) { }
 
   ngOnInit() {
     this.cargarUser()
@@ -19,6 +20,7 @@ export class ComprasPage implements OnInit {
   async cargarUser(){
     await this.storage.create();
     this.usuarioStorage = await this.storage.get('usuario');
+    this.authService.setCurrentUser(this.usuarioStorage);
     if(this.usuarioStorage){
       console.log(this.usuarioStorage.compras[0])
     this.compras=this.usuarioStorage.compras;

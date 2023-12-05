@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage-angular';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/servicios/auth-service';
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.page.html',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CarritoPage implements OnInit {
 
-  constructor(private storage: Storage,private http: HttpClient,private usuarioService: UsuarioService,private router: Router) { }
+  constructor(private authService: AuthService,private storage: Storage,private http: HttpClient,private usuarioService: UsuarioService,private router: Router) { }
   usuarioStorage: Usuario;
   carrito: Compra[]=[];
   precioTotalPedido:number=0;
@@ -22,10 +23,12 @@ export class CarritoPage implements OnInit {
 
   ngOnInit() {
     this.cargarUser();
+ 
   }
   async cargarUser(){
     await this.storage.create();
     this.usuarioStorage = await this.storage.get('usuario');
+    this.authService.setCurrentUser(this.usuarioStorage);
     if(this.usuarioStorage){
     this.carrito=this.usuarioStorage.carrito;
   }else{
@@ -92,6 +95,7 @@ console.log(this.usuarioStorage.email)
     
       
   }
+  
 
   async eliminarDelCarrito(item:any){
     const body={
@@ -111,6 +115,7 @@ console.log(this.usuarioStorage.email)
       
     
     this.usuarioStorage = await this.storage.get('usuario');
+    this.authService.setCurrentUser(this.usuarioStorage);
     this.usuarioStorage=data.usuario;
     this.precioTotalPedido=0;
     this.carrito.forEach((item)=>{
@@ -127,6 +132,6 @@ console.log(this.usuarioStorage.email)
     
     
   }
- 
 
+  
 }

@@ -21,6 +21,7 @@ export class PerfilPage implements OnInit {
   nombre: string= null ;
   apellidos: string= null ;
   
+  
  
   nacimiento: Date = null;
   sexo: string = null;
@@ -39,10 +40,10 @@ export class PerfilPage implements OnInit {
     
     
   }
-
+  formattedDate:string;
   async toggleEditMode() {
     this.isEditMode = !this.isEditMode;
-  
+    
     // Si estamos en modo de edición, carga los datos del usuario desde el storage
     if (this.isEditMode) {
       this.usuarioStorage = await this.storage.get('usuario');
@@ -67,6 +68,12 @@ export class PerfilPage implements OnInit {
       // Asigna más campos de datos aquí
     }
   }
+  // En tu componente TypeScript
+  formatDate(date: Date): string {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('es-ES', options);
+  }
+
 
   async guardarCambios(){
     this.storage.create();

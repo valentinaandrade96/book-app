@@ -21,10 +21,16 @@
       <ion-label position="floating">Apellidos</ion-label>
       <ion-input [(ngModel)]="apellidos"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label position="floating">Fecha de Nacimiento</ion-label>
-      <ion-input [(ngModel)]="nacimiento" type="date"></ion-input>
-    </ion-item>
+  
+
+<ion-item>
+  <ion-label position="floating">Fecha de Nacimiento</ion-label>
+  <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="nacimiento"></ion-datetime>
+</ion-item>
+
+
+
+
     <ion-item>
       <ion-label position="floating">Sexo</ion-label>
       <ion-input [(ngModel)]="sexo"></ion-input>

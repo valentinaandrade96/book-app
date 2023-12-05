@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth-service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
-import { RespuestaGetToken } from 'src/app/interfaces/interfaces';
+import { RespuestaGetToken, RespuestaGetTokenR } from 'src/app/interfaces/interfaces';
 import { HttpHeaders } from '@angular/common/http';
 
 
@@ -133,7 +133,7 @@ export class RegisterPage implements OnInit {
         rol:rol,
         cp: cp
 
-      }).subscribe(async (response: RespuestaGetToken)=>{
+      }).subscribe(async (response: RespuestaGetTokenR)=>{
         console.log('response', response);
         console.log('response.message'+ response.message);
         console.log('response.message'+ response['message']);
@@ -143,13 +143,13 @@ export class RegisterPage implements OnInit {
         }else{
 
           this._usuarioService.guardarToken( response.token )
-          this.authService.setCurrentUser(response['usuarioDb']);
-        this._usuarioService.setUsuario(response['usuarioDb'])
+          this.authService.setCurrentUser(response.usuarioDb);
+        this._usuarioService.setUsuario(response.usuarioDb)
             // Guarda el token en localStorage
            // this._usuarioService.setSession(response);
-            this._usuarioService.setUsuario(response.usuarioDB)
+            this._usuarioService.setUsuario(response.usuarioDb)
             console.log("response['usuarioDB']"+response['usuarioDb'])
-            console.log("response.usuarioDB"+response.usuarioDB)
+            console.log("response.usuarioDB"+response.usuarioDb)
           
           //this.modal.dissmis(null,'cancel');
           this.router.navigateByUrl('/libros');

@@ -139,6 +139,17 @@ export interface RespuestaUsuario {
             
         }
 }
+export class RespuestaGetTokenR{
+  constructor(
+      public status:string,
+      public message:string,
+      public usuarioDb:Usuario,
+      public token?:string
+
+      ){
+          
+      }
+}
 
 export interface RespuestaUsuario {
     ok: boolean;
