@@ -10,9 +10,8 @@
   
 <form [formGroup]="formSignup" class="register-form" >
   <ion-item class="ion-align-items-center">
-    <!-- <ion-label class="label-form">Nombre:</ion-label> -->
-    <ion-icon>
-    </ion-icon>
+   
+    
     <ion-input type="text" placeholder="Nombre" class="form-control" formControlName="nombre"
       [clearInput]="true"></ion-input>
   </ion-item>
@@ -22,19 +21,17 @@
   </ion-text>
 
   <ion-item class="ion-align-items-center">
-    <!-- <ion-label class="label-form">Apellidos:</ion-label> -->
-    <ion-icon>
-    </ion-icon>
+    
+    
     <ion-input type="text" placeholder="Apellidos" class="form-control" formControlName="apellidos"
       [clearInput]="true"></ion-input>
   </ion-item>
   <ion-text class="ion-text-left" color="danger"
-    *ngIf="!formSignup.get('apeliidos')?.valid && formSignup.get('apeliidos')?.touched">
+    *ngIf="!formSignup.get('apellidos')?.valid && formSignup.get('apellidos')?.touched">
     <p class="error">* Por favor, indique sus apeliidos</p>
   </ion-text>
+
   <ion-item class="ion-align-items-center">
-    <!-- <ion-label class="label-form">Email:</ion-label> -->
-    
     <ion-input type="email" placeholder="Email" class="form-control" formControlName="email"
       [clearInput]="true"></ion-input>
   </ion-item>
@@ -45,7 +42,7 @@
   
 
 <ion-item class="ion-align-items-center">
-  <!-- <ion-label class="label-form">Dirección:</ion-label> -->
+ 
   
   <ion-input type="text" placeholder="Direcciónn" class="form-control" formControlName="direccion"
     [clearInput]="true" #autocompleteAddress></ion-input>
@@ -66,7 +63,7 @@
   <p class="error">* Por favor, indique su sexo</p>
 </ion-text>
 <ion-item class="ion-align-items-center">
-  <!-- <ion-label class="label-form">Ciudad:</ion-label> -->
+  
   <ion-input type="text" placeholder="Ciudad" class="form-control" formControlName="ciudad"
     [clearInput]="true" ></ion-input>
 </ion-item>
@@ -76,7 +73,7 @@
 </ion-text>
 
 <ion-item class="ion-align-items-center">
-  <!-- <ion-label class="label-form">Localidad:</ion-label> -->
+  
   <ion-input type="text" placeholder="Localidad" class="form-control" formControlName="localidad"
     [clearInput]="true" ></ion-input>
 </ion-item>
@@ -86,7 +83,7 @@
 </ion-text>
  
 <ion-item class="ion-align-items-center">
-  <!-- <ion-label class="label-form">País:</ion-label> -->
+ 
   <ion-input type="text" placeholder="País" class="form-control" formControlName="pais"
     [clearInput]="true"></ion-input>
 </ion-item>
@@ -95,7 +92,7 @@
   <p class="error">* Por favor, indique su país</p>
 </ion-text>
 <ion-item class="ion-align-items-center">
-  <!-- <ion-label class="label-form">Código postal:</ion-label> -->
+  
   <ion-input type="number" placeholder="Código postal" class="form-control" formControlName="cp"
     [clearInput]="true"></ion-input>
 </ion-item>
@@ -103,7 +100,7 @@
   *ngIf="!formSignup.get('cp')?.valid && formSignup.get('cp')?.touched">
   <p class="error">* Por favor, indique su código postal</p>
 </ion-text>
-<<ion-item class="ion-align-items-center">
+<ion-item class="ion-align-items-center">
   <ion-label class="label-form" class="label-form-fecha">Fecha de nacimiento:</ion-label>
   <ion-input type="date" placeholder="Fecha de nacimiento" class="form-control"
     formControlName="nacimiento" ></ion-input>
