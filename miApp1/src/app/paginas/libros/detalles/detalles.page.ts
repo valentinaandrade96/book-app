@@ -114,25 +114,36 @@ ngOnInit() {
       }
     });
   }
+
+
   async verificaSiCarrito() {
-    this.getUser()
-    console.log(this.usuarioStorage.nombre + "this.usuarioStorage.nombre")
+    await this.getUser();
+  
     if (this.usuarioStorage) {
-      if (this.usuarioStorage.carrito == null || this.usuarioStorage.carrito == null) {
-        this.agregarFavoritos();
-      } else {
+     
+  
+      if (this.libro.stock<=0) {
+        alert("Este artículo no tiene stock disponible.");
+        return;
+      }
+  
+      if (this.usuarioStorage.carrito) {
         const yaEstaEnCarrito = this.usuarioStorage.carrito.some(item => item.titulo === this.libro.titulo);
         if (yaEstaEnCarrito) {
           if (confirm("Ya tienes este artículo en el carrito. ¿Quieres volver a meterlo?")) {
-            this.agregarAlCarrito()
+            this.agregarAlCarrito();
           }
         } else {
-          this.agregarAlCarrito()
+          this.agregarAlCarrito();
         }
-
-        }
-
-      }else{console.log("nada, esto no funciona")}}
+      } else {
+        console.log("El carrito está vacío.");
+        
+      }
+    } else {
+      console.log("Usuario no está definido o no se ha cargado correctamente.");
+    }
+  }
 
   async verificaSiFavoritos(){
     this.getUser()

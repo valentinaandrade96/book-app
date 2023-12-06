@@ -19,6 +19,11 @@
 <ion-content>
   <ion-card>
     <img [src]="libro.img" alt="{{ libro.titulo }}" />
+    <ion-item *ngIf="libro.stock <=0" >
+    <ion-label class="sin-stock">
+      No queda en Stock
+    </ion-label>
+  </ion-item>
     <ion-button *ngIf="!esAdmin()" color="success" expand="block" (click)="verificaSiFavoritos()">
       Favorito
       <ion-icon name="heart-outline" slot="start"></ion-icon>

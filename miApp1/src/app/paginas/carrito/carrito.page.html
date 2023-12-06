@@ -15,6 +15,9 @@
         <h2>{{ item.titulo }}</h2>
         <p>{{ item.ISBN }}</p>
         <p>{{ item.precioTotal }}</p>
+        <p *ngIf="getStock(item.titulo) <= 0" style="color: red;">No hay stock</p>
+        <p *ngIf="getStock(item.titulo) <= 5 && getStock(item.titulo) > 0" style="color: red;">Quedan {{getStock(item.titulo)}} en Stock</p>
+        <p *ngIf="getStock(item.titulo) > 0">Stock disponible</p>
       </ion-label>
       <ion-button fill="clear" slot="end" (click)="eliminarDelCarrito(item)">
         <ion-icon name="trash-outline"></ion-icon>
