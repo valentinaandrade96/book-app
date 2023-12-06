@@ -24,7 +24,7 @@ export class CarritoPage implements OnInit {
   libros: Articulo[] = []
   ngOnInit() {
     this.cargarUser();
-
+   
 
   }
   getStock(titulo: string): number {
@@ -35,7 +35,7 @@ export class CarritoPage implements OnInit {
   async cargarUser() {
     await this.storage.create();
     this.usuarioStorage = await this.storage.get('usuario');
-    this.loadBooks();
+   
 
     this.authService.setCurrentUser(this.usuarioStorage);
     if (this.usuarioStorage) {
@@ -46,11 +46,15 @@ export class CarritoPage implements OnInit {
       this.carrito = [];
 
     }
+    await this.loadBooks();
 
     this.carrito.forEach((item) => {
-      if (this.getStock(item.titulo)) {
+      console.log("sisi")
+      console.log(this.getStock(item.titulo))
+      
+        console.log("sisi")
         this.precioTotalPedido = this.precioTotalPedido + item.precioTotal;
-      }});
+      });
     this.descuento = "10%"
     this.resultadoPrecio = this.precioTotalPedido - (this.precioTotalPedido * 0.1)
   
