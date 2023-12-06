@@ -87,6 +87,9 @@ const rutas: Routes = [
 },
 {path: 'stock',
  loadChildren: () => import('./paginas/stock/stock.module').then(m => m.StockPageModule) 
+},
+{path: 'listausuarios',
+ loadChildren: () => import('./paginas/listausuario/listausuario.module').then(m => m.ListausuarioPageModule) 
 }
 ];
 

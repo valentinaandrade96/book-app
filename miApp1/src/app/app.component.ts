@@ -84,7 +84,12 @@ export class AppComponent implements OnInit {
       color: 'black',
       icono:'infinite-outline'
     },
-    
+    {
+      nombre: 'Usuarios',
+      ruta: '/listausuarios',
+      color: 'sucess',
+      icono:'mdi:qrcode-scan'
+    },
    
     
     
@@ -106,7 +111,7 @@ export class AppComponent implements OnInit {
       ruta: '/button',
       color: 'sucess',
       icono:'radio-button-on-outline'
-    },
+    }
     
     
     

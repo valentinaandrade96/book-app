@@ -89,9 +89,13 @@ console.log(username+""+pwd)
       if (response.token) {
        
         //this._usuarioService.setSession(response);
+        console.log("response.token+ "+ response.token)
+        
         this._usuarioService.guardarToken( response.token )
         this.authService.setCurrentUser(response.usuarioDB);
-        this._usuarioService.setUsuario(response['usuarioDB'])
+        this._usuarioService.setUsuario(response.usuarioDB)
+        console.log("response['usuarioDB']"+ response['usuarioDB'])
+        console.log("response.usuarioDB" + response.usuarioDB)
         console.log(response)
         console.log(response.usuarioDB.rol)
         console.log(typeof response.usuarioDB)

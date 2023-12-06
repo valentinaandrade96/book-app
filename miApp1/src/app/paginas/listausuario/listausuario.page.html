@@ -1,0 +1,57 @@
+<app-cabecera [titulo]="' '" [color]="'sucess'"></app-cabecera>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Usuarios</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+   
+      <ion-searchbar class="search" (ionChange)="cambiaTexto($event)" placeholder="Título..." name=""></ion-searchbar>
+      <div *ngFor="let usuario of usuarios | bookFilter:busqueda">
+
+        <div class="libro-item">
+          <ion-item (click)="toggleDetalles(usuario)">
+            {{ usuario.nombre }} {{ usuario.apellidos }}
+          </ion-item>
+          <ion-item>
+            Email: - {{ usuario.email }}
+          </ion-item>
+          <div *ngIf="usuarioExpandido === usuario.email">
+            <ion-list>
+              <ion-item>
+                <ion-label>Email:</ion-label>
+                <ion-text>{{ usuario.email }}</ion-text>
+              </ion-item>
+              <ion-item>
+                <ion-label>Dirección:</ion-label>
+                <ion-text>{{ usuario.direccion }}</ion-text>
+              </ion-item>
+              <ion-item>
+                <ion-label>Ciudad:</ion-label>
+                <ion-text>{{ usuario.ciudad }}</ion-text>
+              </ion-item>
+              <ion-item>
+                <ion-label>Localidad:</ion-label>
+                <ion-text>{{ usuario.localidad }}</ion-text>
+              </ion-item>
+              <ion-item>
+                <ion-label>País:</ion-label>
+                <ion-text>{{ usuario.pais }}</ion-text>
+              </ion-item>
+              <ion-item>
+                <ion-label>Código Postal:</ion-label>
+                <ion-text>{{ usuario.cp }}</ion-text>
+              </ion-item>
+            </ion-list>
+            <ion-button (click)="cambiarRol(usuario.email)">Cambiar Rol</ion-button>
+            
+            </div>
+          </div>
+        </div>
+      </ion-list>
+</ion-content>

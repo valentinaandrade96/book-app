@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform, Injectable } from '@angular/core';
-import { Articulo } from '../interfaces/interfaces';
+import { Articulo, Usuario } from '../interfaces/interfaces';
 
 
 @Pipe({
@@ -7,19 +7,27 @@ import { Articulo } from '../interfaces/interfaces';
 })
 @Injectable()
 export class SearchPipe implements PipeTransform {
-  transform(arreglo: Articulo[], args: string): any {
-    if (!args ||args=='') {
-      return arreglo;
+  transform(items: any[], filtro: string): any {
+    if (!items) return [];
+    if (!filtro) return items;
+
+    filtro = filtro.toLowerCase();
+
+    if (items.length > 0 && "ISBN" in items[0]) {
+      // Filtrar Articulos
+      return items.filter((item: Articulo) => {
+        return item.titulo.toLowerCase().includes(filtro) || 
+               item.autor.toLowerCase().includes(filtro);
+      });
+    } else if (items.length > 0 && "email" in items[0]) {
+      // Filtrar Usuarios
+      return items.filter((usuario: Usuario) => {
+        return usuario.nombre.toLowerCase().includes(filtro) ||
+               usuario.email.toLowerCase().includes(filtro);
+      });
     }
-    return arreglo.filter((item) => {
-      
-        return item.titulo.toLowerCase().includes(args.toLowerCase()) || item.autor.toLowerCase().includes(args.toLowerCase())
-        
-      
-        return ;
-      }
-      // return item.volumeInfo.authors[0].toLowerCase().includes(args.toLowerCase())||item.volumeInfo.title.toLowerCase().includes(args.toLowerCase());
-    );
+
+    return items; // Si no se reconoce el tipo, devuelve la lista original
   }
 
 
