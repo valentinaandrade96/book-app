@@ -93,7 +93,7 @@ console.log(username+""+pwd)
         
         this._usuarioService.guardarToken( response.token )
         this.authService.setCurrentUser(response.usuarioDB);
-        this._usuarioService.setUsuario(response.usuarioDB)
+        this._usuarioService.setUsuario(response['usuarioDB'])
         console.log("response['usuarioDB']"+ response['usuarioDB'])
         console.log("response.usuarioDB" + response.usuarioDB)
         console.log(response)
