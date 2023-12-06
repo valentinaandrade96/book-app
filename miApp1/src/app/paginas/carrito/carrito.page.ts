@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth-service';
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.page.html',
@@ -13,7 +14,7 @@ import { AuthService } from 'src/app/servicios/auth-service';
 })
 export class CarritoPage implements OnInit {
 
-  constructor(private authService: AuthService,private storage: Storage,private http: HttpClient,private usuarioService: UsuarioService,private router: Router) { }
+  constructor(private navCtrl: NavController,private authService: AuthService,private storage: Storage,private http: HttpClient,private usuarioService: UsuarioService,private router: Router) { }
   usuarioStorage: Usuario;
   carrito: Compra[]=[];
   precioTotalPedido:number=0;
@@ -89,6 +90,8 @@ console.log(this.usuarioStorage.email)
     
     this.usuarioStorage = await this.storage.get('usuario');
     console.log("Comprar carrrito despues del token: "+this.usuarioStorage.carrito[0])
+    alert(data.mensaje)
+    this.navCtrl.navigateForward('/libros');
   
   }});
    
@@ -133,5 +136,6 @@ console.log(this.usuarioStorage.email)
     
   }
 
+ 
   
 }

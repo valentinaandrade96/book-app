@@ -84,6 +84,9 @@ const rutas: Routes = [
 },
 {path: 'nuevolibro',
  loadChildren: () => import('./paginas/nuevolibro/nuevolibro.module').then(m => m.NuevolibroPageModule) 
+},
+{path: 'stock',
+ loadChildren: () => import('./paginas/stock/stock.module').then(m => m.StockPageModule) 
 }
 ];
 

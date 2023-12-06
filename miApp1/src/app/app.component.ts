@@ -78,6 +78,11 @@ export class AppComponent implements OnInit {
       ruta: '/nuevolibro',
       color: 'black',
       icono:'infinite-outline'
+    }, {
+      nombre: 'Stock',
+      ruta: '/stock',
+      color: 'black',
+      icono:'infinite-outline'
     },
     
    

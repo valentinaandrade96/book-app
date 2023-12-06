@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { Usuario } from 'src/app/interfaces/interfaces';
 import { AuthService } from 'src/app/servicios/auth-service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-usuario',
@@ -13,7 +14,7 @@ export class UsuarioPage implements OnInit {
   usuarioStorage: Usuario;
   
 
-  constructor(private navCtrl: NavController,private storage: Storage, private authService: AuthService) { 
+  constructor(private http: HttpClient, private navCtrl: NavController,private storage: Storage, private authService: AuthService) { 
 
   }
 
@@ -49,6 +50,23 @@ export class UsuarioPage implements OnInit {
  envios() {
     this.navCtrl.navigateForward('/admin');
   }
+  borrarUsuario(){
+if(this.usuarioStorage){
+  if(confirm("¿Estas seguro de querer dar de baja tu cuenta?")){
+    this.http.delete("https://bookserver-6e5c8a077822.herokuapp.com/usuario/delete/"+ this.usuarioStorage.email).subscribe(async (data: any) => {
+      if(data.success==true){
+      alert(data.message);
+      this.navCtrl.navigateForward('/first');
+    }else{ 
+
+    }}
+    );
+  }
+  }else{
+    alert("No se ha podido borrar la cuenta")
+  
+  
+}}
  
 
   esAdmin(): boolean {
