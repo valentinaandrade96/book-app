@@ -5,3 +5,68 @@
         margin-right: 20px;
         font-size: 20px;
     }
+
+    /* Estilos generales para el formulario */
+form {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+  }
+  
+  /* Estilos para los items del formulario */
+  ion-item {
+    --padding-start: 0;
+    --padding-end: 0;
+    --inner-padding-end: 20px;
+    --min-height: 50px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    
+  }
+  
+  /* Estilo para los mensajes de error */
+  .form-error {
+    color: red;
+    font-size: 0.8em;
+    margin-left: 20px;
+  }
+  
+  /* Estilo para el botón de registro */
+  ion-button.submit {
+    margin-top: 20px;
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  /* Estilo para el botón de regreso */
+  ion-button.back-button {
+    margin: 20px 0;
+    font-size: 1em;
+  }
+
+  ion-content {
+    --background: #000; // Fondo negro para ion-content
+    color: #fff; // Texto blanco
+  
+    .form-control {
+      --background: #1a1a1a; // Fondo oscuro para los inputs
+      --placeholder-color: #ccc; // Color de los placeholders
+      --color: #fff; // Color del texto del input
+    }
+  
+    .error {
+      color: #f53d3d; // Color de los mensajes de error
+    }
+  
+    .submit {
+      --background: #4d4d4d; // Fondo del botón de envío
+      color: #fff; // Texto del botón
+    }
+  
+    // Otros estilos que necesites...
+  }
+  
+  // Asegúrate de ajustar los colores y estilos adicionales según tus necesidades
+  
+  

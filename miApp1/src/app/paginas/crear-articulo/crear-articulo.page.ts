@@ -33,7 +33,9 @@ export class CrearArticuloPage implements OnInit {
         // Verificar si la respuesta es exitosa
         if (response && response.titulo) {
           // Navegar a la página de detalles del artículo recién creado
-          this.navCtrl.navigateForward(['/detalles-articulo', response.titulo]);
+         // this.navCtrl.navigateForward(['/detalles-articulo', response.titulo]);
+        }else{
+         
         }
       },
       (error) => {

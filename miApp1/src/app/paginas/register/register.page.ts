@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 import { NavController, ToastController } from '@ionic/angular';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth-service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { RespuestaGetToken, RespuestaGetTokenR } from 'src/app/interfaces/interfaces';
 import { HttpHeaders } from '@angular/common/http';
+
 
 
 @Component({
@@ -17,7 +18,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class RegisterPage implements OnInit {
     
-  public form: FormGroup;
+  public formSignup: FormGroup;
 
   login:boolean = true;
 
@@ -31,20 +32,31 @@ export class RegisterPage implements OnInit {
     private auth:AuthService,
     private _toastController: ToastController,private authService: AuthService) { 
 
-    this.form = new FormGroup({
-      nombre: new FormControl('', Validators.required),
-      apellidos: new FormControl('', Validators.required),
+    this.formSignup = new FormGroup({
+      nombre: new FormControl('', [Validators.required, this.letrasValidator]),
+      apellidos: new FormControl('', [Validators.required, this.letrasValidator]),
       email: new FormControl('', [Validators.required, Validators.email]),
       nacimiento: new FormControl('',Validators.required),
-      sexo: new FormControl('', Validators.required),
-      direccion: new FormControl('', Validators.required),
-      ciudad: new FormControl('', Validators.required),
-      localidad: new FormControl('', Validators.required),
-      pais: new FormControl('', Validators.required),
+      sexo: new FormControl('', [Validators.required, this.letrasValidator]),
+      direccion: new FormControl('', [Validators.required, this.letrasValidator]),
+      ciudad: new FormControl('', [Validators.required, this.letrasValidator]),
+      localidad: new FormControl('', [Validators.required, this.letrasValidator]),
+      pais: new FormControl('', [Validators.required, this.letrasValidator]),
       cp: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       passwordtwo: new FormControl('')
     })
+  }
+
+  
+letrasValidator(control: AbstractControl): {[key: string]: any} | null {
+    const valido = /^[a-zA-Z\s]*$/.test(control.value);
+    return valido ? null : {'soloLetras': {value: control.value}};
+  }
+  
+   passwordValidator(control: AbstractControl): {[key: string]: any} | null {
+    const fuerte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(control.value);
+    return fuerte ? null : {'passwordDebil': {value: control.value}};
   }
 
   ngOnInit() {
@@ -76,15 +88,15 @@ export class RegisterPage implements OnInit {
   }
 
   checkPassword(){
-    const pwd = this.form.controls.pwd.value;
-    const confirmPwd = this.form.controls.rpwd.value;
+    const pwd = this.formSignup.controls.pwd.value;
+    const confirmPwd = this.formSignup.controls.rpwd.value;
 
     return pwd === confirmPwd ? true : false;
   }
 
   onLogin(){
-    const username = this.form.controls.username.value;
-    const pwd = this.form.controls.pwd.value;
+    const username = this.formSignup.controls.username.value;
+    const pwd = this.formSignup.controls.pwd.value;
     
 
     this.auth.onLoginUser(username, pwd).subscribe({
@@ -103,19 +115,19 @@ export class RegisterPage implements OnInit {
 
   onRegister(){
 
-    if(this.form.valid){
-      if(this.form.controls.password.value== this.form.controls.passwordtwo.value){
-      const nombre = this.form.controls.nombre.value;
-      const password = this.form.controls.password.value;
-      const email = this.form.controls.email.value;
-      const sexo = this.form.controls.sexo.value;
-      const direccion = this.form.controls.direccion.value;
-      const localidad = this.form.controls.localidad.value;
-      const apellidos = this.form.controls.apellidos.value;
-      const nacimiento= this.form.controls.nacimiento.value;
-      const pais= this.form.controls.pais.value;
-      const ciudad= this.form.controls.ciudad.value;
-      const cp= this.form.controls.cp.value;
+    if(this.formSignup.valid){
+      if(this.formSignup.controls.password.value== this.formSignup.controls.passwordtwo.value){
+      const nombre = this.formSignup.controls.nombre.value;
+      const password = this.formSignup.controls.password.value;
+      const email = this.formSignup.controls.email.value;
+      const sexo = this.formSignup.controls.sexo.value;
+      const direccion = this.formSignup.controls.direccion.value;
+      const localidad = this.formSignup.controls.localidad.value;
+      const apellidos = this.formSignup.controls.apellidos.value;
+      const nacimiento= this.formSignup.controls.nacimiento.value;
+      const pais= this.formSignup.controls.pais.value;
+      const ciudad= this.formSignup.controls.ciudad.value;
+      const cp= this.formSignup.controls.cp.value;
       const rol='usuario'
       
   console.log(nombre)

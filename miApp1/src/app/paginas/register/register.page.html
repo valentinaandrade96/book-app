@@ -1,67 +1,145 @@
-<ion-button fill="clear" (click)="back()">
+<ion-button fill="clear" class="back-button"  (click)="back()">
   <ion-icon name="arrow-back"></ion-icon>
 </ion-button>
 
 
 <ion-content>
   
-    <ion-text position="floating">Todos los campos son obligatorios</ion-text>
+
     
   
-<form [formGroup]="form">
-  <ion-item>
-    <ion-label position="floating">Nombre</ion-label>
-    <ion-input formControlName="nombre" type="text"></ion-input>
+<form [formGroup]="formSignup" class="register-form" >
+  <ion-item class="ion-align-items-center">
+    <!-- <ion-label class="label-form">Nombre:</ion-label> -->
+    <ion-icon>
+    </ion-icon>
+    <ion-input type="text" placeholder="Nombre" class="form-control" formControlName="nombre"
+      [clearInput]="true"></ion-input>
   </ion-item>
-  <ion-item>
-    <ion-label position="floating">Apellidos</ion-label>
-    <ion-input formControlName="apellidos" type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Email</ion-label>
-    <ion-input formControlName="email" type="email"></ion-input>
-  </ion-item>
-  <ion-item >
-    <ion-label position="floating">Fecha de nacimiento</ion-label>
-    <ion-input formControlName="nacimiento" type="date"></ion-input>
-  </ion-item>
-  <ion-item >
-    <ion-label position="floating">Sexo</ion-label>
-    <ion-select formControlName="sexo">
-      <ion-select-option value="Mujer">Mujer</ion-select-option>
-      <ion-select-option value="Hombre">Hombre</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item >
-    <ion-label position="floating">Direccion</ion-label>
-    <ion-input formControlName="direccion" type="text"></ion-input>
-  </ion-item>
-  <ion-item >
-    <ion-label position="floating">ciudad</ion-label>
-    <ion-input formControlName="ciudad" type="text"></ion-input>
-  </ion-item>
-  <ion-item >
-    <ion-label position="floating">Localidad</ion-label>
-    <ion-input formControlName="localidad" type="text"></ion-input>
-  </ion-item>
-  <ion-item >
-    <ion-label position="floating">cp</ion-label>
-    <ion-input formControlName="cp" type="text"></ion-input>
-  </ion-item>
-  <ion-item >
-    <ion-label position="floating">Pais</ion-label>
-    <ion-input formControlName="pais" type="text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input formControlName="password" [type]="passwordType">
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Confirma contraseña</ion-label>
-    <ion-input formControlName="passwordtwo" [type]="passwordType">
-    </ion-input>
-  </ion-item>
+  <ion-text class="ion-text-left" color="danger"
+    *ngIf="!formSignup.get('nombre')?.valid && formSignup.get('nombre')?.touched">
+    <p class="error">* Por favor, indique su nombre</p>
+  </ion-text>
 
-  <ion-button class="submit ion-margin-top" size="full"  (click)="onRegister()">Registrarse</ion-button>
+  <ion-item class="ion-align-items-center">
+    <!-- <ion-label class="label-form">Apellidos:</ion-label> -->
+    <ion-icon>
+    </ion-icon>
+    <ion-input type="text" placeholder="Apellidos" class="form-control" formControlName="apellidos"
+      [clearInput]="true"></ion-input>
+  </ion-item>
+  <ion-text class="ion-text-left" color="danger"
+    *ngIf="!formSignup.get('apeliidos')?.valid && formSignup.get('apeliidos')?.touched">
+    <p class="error">* Por favor, indique sus apeliidos</p>
+  </ion-text>
+  <ion-item class="ion-align-items-center">
+    <!-- <ion-label class="label-form">Email:</ion-label> -->
+    
+    <ion-input type="email" placeholder="Email" class="form-control" formControlName="email"
+      [clearInput]="true"></ion-input>
+  </ion-item>
+  <ion-text class="ion-text-left" color="danger"
+    *ngIf="!formSignup.get('email')?.valid && formSignup.get('email')?.touched">
+    <p class="error">* Por favor, indique un email válido</p>
+  </ion-text>
   
+
+<ion-item class="ion-align-items-center">
+  <!-- <ion-label class="label-form">Dirección:</ion-label> -->
+  
+  <ion-input type="text" placeholder="Direcciónn" class="form-control" formControlName="direccion"
+    [clearInput]="true" #autocompleteAddress></ion-input>
+</ion-item>
+<ion-text class="ion-text-left" color="danger"
+  *ngIf="!formSignup.get('direccion')?.valid && formSignup.get('direccion')?.touched">
+  <p class="error">* Por favor, indique su dirección</p>
+</ion-text>
+
+<ion-item>
+  <ion-select placeholder="Sexo" class="form-control" formControlName="sexo">
+    <ion-select-option value="Hombre">Hombre</ion-select-option>
+    <ion-select-option value="Mujer">Mujer</ion-select-option>
+  </ion-select>
+</ion-item>
+<ion-text class="ion-text-left" color="danger"
+  *ngIf="!formSignup.get('sexo')?.valid && formSignup.get('sexo')?.touched">
+  <p class="error">* Por favor, indique su sexo</p>
+</ion-text>
+<ion-item class="ion-align-items-center">
+  <!-- <ion-label class="label-form">Ciudad:</ion-label> -->
+  <ion-input type="text" placeholder="Ciudad" class="form-control" formControlName="ciudad"
+    [clearInput]="true" ></ion-input>
+</ion-item>
+<ion-text class="ion-text-left" color="danger"
+  *ngIf="!formSignup.get('ciudad')?.valid && formSignup.get('ciudad')?.touched">
+  <p class="error">* Por favor, indique su ciudad</p>
+</ion-text>
+
+<ion-item class="ion-align-items-center">
+  <!-- <ion-label class="label-form">Localidad:</ion-label> -->
+  <ion-input type="text" placeholder="Localidad" class="form-control" formControlName="localidad"
+    [clearInput]="true" ></ion-input>
+</ion-item>
+<ion-text class="ion-text-left" color="danger"
+  *ngIf="!formSignup.get('localidad')?.valid && formSignup.get('localidad')?.touched">
+  <p class="error">* Por favor, indique su localidad</p>
+</ion-text>
+ 
+<ion-item class="ion-align-items-center">
+  <!-- <ion-label class="label-form">País:</ion-label> -->
+  <ion-input type="text" placeholder="País" class="form-control" formControlName="pais"
+    [clearInput]="true"></ion-input>
+</ion-item>
+<ion-text class="ion-text-left" color="danger"
+  *ngIf="!formSignup.get('pais')?.valid && formSignup.get('pais')?.touched">
+  <p class="error">* Por favor, indique su país</p>
+</ion-text>
+<ion-item class="ion-align-items-center">
+  <!-- <ion-label class="label-form">Código postal:</ion-label> -->
+  <ion-input type="number" placeholder="Código postal" class="form-control" formControlName="cp"
+    [clearInput]="true"></ion-input>
+</ion-item>
+<ion-text class="ion-text-left" color="danger"
+  *ngIf="!formSignup.get('cp')?.valid && formSignup.get('cp')?.touched">
+  <p class="error">* Por favor, indique su código postal</p>
+</ion-text>
+<<ion-item class="ion-align-items-center">
+  <ion-label class="label-form" class="label-form-fecha">Fecha de nacimiento:</ion-label>
+  <ion-input type="date" placeholder="Fecha de nacimiento" class="form-control"
+    formControlName="nacimiento" ></ion-input>
+</ion-item>
+<ion-text class="ion-text-left" color="danger"
+  *ngIf="!formSignup.get('nacimiento')?.valid && formSignup.get('nacimiento')?.touched">
+  <p class="error">* Porfavor, indique su fecha de nacimiento</p>
+</ion-text>
+
+<ion-item class="ion-align-items-center">
+  <!-- <ion-label class="label-form">Contraseña:</ion-label> -->
+  
+  <ion-input type="password" placeholder="Contraseña" class="form-control" formControlName="password"
+     [clearInput]="true"></ion-input>
+</ion-item>
+<ion-text class="ion-text-left" color="danger"
+*ngIf="!formSignup.get('password')?.valid && formSignup.get('password')?.touched">
+<p class="error" *ngIf="formSignup.get('password')?.invalid || formSignup.get('password')?.dirty">
+  * La contraseña debe tener al menos 8 caracteres y contener una mayúscula, un número y un símbolo
+</p>
+</ion-text>
+
+<ion-item class="ion-align-items-center">
+
+
+<ion-input type="password" placeholder="Contraseña" class="form-control" formControlName="passwordtwo"
+   [clearInput]="true"></ion-input>
+</ion-item>
+<ion-text class="ion-text-left" color="danger"
+*ngIf="!formSignup.get('password')?.valid && formSignup.get('password')?.touched">
+<p class="error" *ngIf="formSignup.get('password')?.invalid || formSignup.get('password')?.dirty">
+* La contraseña debe tener al menos 8 caracteres y contener una mayúscula, un número y un símbolo
+</p>
+</ion-text>
+
+  <ion-button [disabled]="!formSignup.valid" class="submit ion-margin-top" size="full" (click)="onRegister()">Registrarse</ion-button>
+ 
+  </form>
+</ion-content>

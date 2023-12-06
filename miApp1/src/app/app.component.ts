@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
       nombre: 'Iniciio',
       ruta: '/libros',
       color: 'black',
-      icono:'infinite-outline'
+      icono:'mdi:qrcode-scan'
     },
     
     
@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
       nombre: 'Log out',
       ruta: '/button',
       color: 'sucess',
-      icono:'radio-button-on-outline'
+      icono:'mdi:qrcode-scan'
     }
     
    
@@ -71,18 +71,18 @@ export class AppComponent implements OnInit {
       nombre: 'Inicio',
       ruta: '/libros',
       color: 'black',
-      icono:'infinite-outline'
+      icono:'mdi:qrcode-scan'
     },
     {
       nombre: 'Subir nuevo Libro',
       ruta: '/nuevolibro',
       color: 'black',
-      icono:'infinite-outline'
+      icono:'mdi:qrcode-scan'
     }, {
       nombre: 'Stock',
       ruta: '/stock',
       color: 'black',
-      icono:'infinite-outline'
+      icono:'mdi:qrcode-scan'
     },
     {
       nombre: 'Usuarios',
@@ -110,7 +110,7 @@ export class AppComponent implements OnInit {
       nombre: 'Log out',
       ruta: '/button',
       color: 'sucess',
-      icono:'radio-button-on-outline'
+      icono:'mdi:qrcode-scan'
     }
     
     

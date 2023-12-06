@@ -64,6 +64,7 @@ passwordOn() {
 
 
 onLogin(){
+  if(this.form.valid){
   const username = this.form.controls.email.value;
   const pwd = this.form.controls.password.value;
 console.log(username+""+pwd)
@@ -76,14 +77,8 @@ console.log(username+""+pwd)
     if(response.status=='fail'){
     console.log('error de inicio de sesión');
     alert("Usuario o contraseña incorrecta");
-      const toast= await this._toastController.create({
-        duration:5000,
-        message: response.message,
-        position:'bottom',
-        cssClass:'alertToast',
-       
-      });
-      await toast.present();
+      
+     
     }else{
       
       if (response.token) {
@@ -115,7 +110,9 @@ console.log(username+""+pwd)
 
 
 
-  })
+  })}else{
+    
+  }
 }
 back(){
   this.router.navigateByUrl('/first');

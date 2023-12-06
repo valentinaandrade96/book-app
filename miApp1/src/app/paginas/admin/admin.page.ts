@@ -47,6 +47,7 @@ export class AdminPage implements OnInit {
       const respuesta = await this._usuarioService.obtenerTodosLosUsuarios().toPromise();
       
       if (respuesta && respuesta.usuarios) {
+        console.log()
         // Filtra usuarios con compras no enviadas
         this.usuarios = respuesta.usuarios.filter((usuario) => {
           return usuario.compras.some((compra) => !compra.enviado);

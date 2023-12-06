@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/interfaces/interfaces';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
@@ -12,7 +13,7 @@ export class ListausuarioPage implements OnInit {
   filtro: string = '';
   usuarioExpandido: string | null = null;
   public busqueda:string='';
-  constructor(private _usuarioService: UsuarioService) { }
+  constructor(private _usuarioService: UsuarioService, private http: HttpClient) { }
 
   ngOnInit() {
     this.obtenerUsuarios()
@@ -37,7 +38,13 @@ export class ListausuarioPage implements OnInit {
       }
     
       cambiarRol(email: string) {
-        //********************************** */
+        const body={
+          email:email
+        }
+        this.http.put("https://bookserver-6e5c8a077822.herokuapp.com/usuario/cambiarRolAdmin/"+ email,body ).subscribe(async (data: any) => {
+      alert("rol cambiado a admin del usuario")
+      
+        });
       }
       cambiaTexto(event:any){
         this.busqueda = event.target.value;
